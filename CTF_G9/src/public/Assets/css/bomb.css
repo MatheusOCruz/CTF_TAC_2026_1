@@ -1,0 +1,757 @@
+:root {
+    --case-edge: #08090b;
+    --case-dark: #343940;
+    --case-mid: #626a74;
+    --case-light: #9098a3;
+    --panel-dark: #111316;
+    --panel-edge: #030405;
+    --button-red: #ff2328;
+    --button-green: #35d05b;
+}
+
+* {
+    box-sizing: border-box;
+    letter-spacing: 0;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    align-items: center;
+    background-color: #7fa4d4;
+    background-image:
+        linear-gradient(155deg, rgba(255, 255, 255, 0.16), transparent 38%),
+        repeating-linear-gradient(164deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 46px),
+        repeating-linear-gradient(24deg, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 54px);
+    color: #f4f6f7;
+    display: flex;
+    font-family: 'Share Tech Mono', monospace;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 28px;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+.bomb-stage {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: min(920px, calc(100vw - 56px));
+}
+
+.bomb-chassis {
+    background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.2), transparent 16%),
+        linear-gradient(335deg, rgba(255, 255, 255, 0.13), transparent 22%),
+        linear-gradient(145deg, #6f7781 0%, #464c55 48%, #717985 100%);
+    border: 5px solid var(--case-edge);
+    border-radius: 8px;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -4px 0 rgba(0, 0, 0, 0.35),
+        0 26px 34px rgba(36, 54, 82, 0.28),
+        0 8px 0 rgba(0, 0, 0, 0.18);
+    max-width: 920px;
+    min-width: 0;
+    padding: 60px 54px 44px;
+    position: relative;
+    width: 100%;
+}
+
+.bomb-chassis::before {
+    background-image:
+        repeating-linear-gradient(0deg, transparent 0 17px, rgba(255, 255, 255, 0.025) 17px 18px),
+        repeating-linear-gradient(90deg, transparent 0 28px, rgba(0, 0, 0, 0.05) 28px 29px);
+    border-radius: 4px;
+    content: "";
+    inset: 7px;
+    pointer-events: none;
+    position: absolute;
+}
+
+.bomb-layout {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(300px, 1.04fr) 88px minmax(280px, 0.96fr);
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.case-screw {
+    background:
+        radial-gradient(circle at 36% 30%, #d2d5d8 0 14%, #777f89 15% 54%, #30343b 55% 100%);
+    border: 4px solid #111319;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.32), 0 1px 0 rgba(255, 255, 255, 0.12);
+    height: 32px;
+    position: absolute;
+    width: 32px;
+    z-index: 0;
+}
+
+.case-screw::before,
+.case-screw::after,
+.wire-screw::before,
+.wire-screw::after {
+    background: #111319;
+    border-radius: 2px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.case-screw::before,
+.wire-screw::before {
+    height: 4px;
+    width: 18px;
+}
+
+.case-screw::after,
+.wire-screw::after {
+    height: 18px;
+    width: 4px;
+}
+
+.screw-tl {
+    left: 18px;
+    top: 16px;
+}
+
+.screw-tr {
+    right: 18px;
+    top: 16px;
+}
+
+.screw-bl {
+    bottom: 16px;
+    left: 18px;
+}
+
+.screw-br {
+    bottom: 16px;
+    right: 18px;
+}
+
+.wire-bay,
+.control-panel,
+.vent-panel,
+.timer-screen,
+.entry-preview {
+    border: 4px solid var(--panel-edge);
+    box-shadow:
+        inset 0 2px 10px rgba(0, 0, 0, 0.78),
+        0 1px 0 rgba(255, 255, 255, 0.11);
+}
+
+.wire-bay {
+    background: linear-gradient(180deg, #25292e 0%, #111316 100%);
+    border-radius: 8px;
+    display: flex;
+    min-width: 0;
+    padding: 14px;
+}
+
+.wire-rack {
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0 4px, transparent 4px calc(100% - 4px), rgba(255, 255, 255, 0.04) calc(100% - 4px) 100%),
+        linear-gradient(180deg, #171a1f 0%, #0e1013 100%);
+    border: 3px solid #050607;
+    border-radius: 8px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
+    min-height: 368px;
+    min-width: 0;
+    padding: 9px 8px;
+}
+
+.wire-item {
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 22px 28px minmax(132px, 1fr) 28px 22px;
+    height: 40px;
+    min-width: 0;
+    text-decoration: none;
+}
+
+.wire-item.is-disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+.wire-item.is-disabled .wire-core {
+    opacity: 0.46;
+}
+
+.wire-item:hover .wire-core,
+.wire-item:focus-visible .wire-core {
+    filter: brightness(1.18);
+}
+
+.wire-item:focus-visible {
+    outline: 2px solid #f7dca6;
+    outline-offset: 2px;
+}
+
+.wire-screw {
+    background:
+        radial-gradient(circle at 35% 30%, #b9bec6 0 14%, #69717b 15% 54%, #2f3339 55% 100%);
+    border: 2px solid #08090b;
+    border-radius: 50%;
+    height: 22px;
+    position: relative;
+    width: 22px;
+}
+
+.wire-screw::before {
+    height: 3px;
+    width: 12px;
+}
+
+.wire-screw::after {
+    height: 12px;
+    width: 3px;
+}
+
+.wire-terminal {
+    background: linear-gradient(180deg, #8b929c 0%, #525963 48%, #2e333a 100%);
+    border: 2px solid #121419;
+    border-radius: 4px;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.18),
+        0 2px 3px rgba(0, 0, 0, 0.58);
+    display: block;
+    height: 34px;
+    position: relative;
+}
+
+.wire-terminal::after {
+    background: radial-gradient(circle at 35% 35%, #d8dde4 0 18%, #666d76 19% 100%);
+    border: 1px solid #111319;
+    border-radius: 50%;
+    content: "";
+    height: 9px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 9px;
+}
+
+.wire-cable,
+.wire-cable svg {
+    display: block;
+    height: 34px;
+    min-width: 0;
+    width: 100%;
+}
+
+.wire-cable path {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.wire-shadow {
+    stroke: rgba(0, 0, 0, 0.76);
+    stroke-width: 18;
+}
+
+.wire-core {
+    stroke: var(--wire-color);
+    stroke-width: 12;
+    transition: filter 0.18s ease;
+}
+
+.wire-shine {
+    opacity: 0.4;
+    stroke: rgba(255, 255, 255, 0.54);
+    stroke-width: 2;
+}
+
+.wire-cut-left,
+.wire-cut-right {
+    display: none;
+}
+
+.wire-item.is-cut .wire-whole {
+    display: none;
+}
+
+.wire-item.is-cut .wire-cut-left,
+.wire-item.is-cut .wire-cut-right {
+    display: block;
+}
+
+.wire-item.is-cut .wire-core {
+    opacity: 0.72;
+}
+
+.wire-red {
+    --wire-color: #ff171f;
+}
+
+.wire-orange {
+    --wire-color: #ff6b1b;
+}
+
+.wire-yellow {
+    --wire-color: #ffd11d;
+}
+
+.wire-green {
+    --wire-color: #37c93d;
+}
+
+.wire-blue {
+    --wire-color: #1d5dff;
+}
+
+.wire-purple {
+    --wire-color: #8226d4;
+}
+
+.wire-pink {
+    --wire-color: #f02593;
+}
+
+.wire-cyan {
+    --wire-color: #18d9d5;
+}
+
+.center-column {
+    align-items: start;
+    display: grid;
+    gap: 18px;
+    grid-template-rows: 86px 1fr;
+    justify-items: center;
+}
+
+.defuse-button {
+    align-items: center;
+    background: linear-gradient(145deg, #181b20, #343941);
+    border: 4px solid #07080a;
+    border-radius: 8px;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.12),
+        0 2px 0 rgba(255, 255, 255, 0.09),
+        0 7px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    display: flex;
+    height: 78px;
+    justify-content: center;
+    padding: 0;
+    width: 78px;
+}
+
+.defuse-button:focus-visible {
+    outline: 2px solid #f7dca6;
+    outline-offset: 3px;
+}
+
+.defuse-button:active:not(:disabled) .defuse-light {
+    transform: translateY(2px) scale(0.94);
+}
+
+.defuse-button:disabled {
+    cursor: default;
+}
+
+.defuse-light {
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.54), transparent 0 17%),
+        linear-gradient(145deg, #ff4b4f 0%, var(--button-red) 45%, #aa0710 100%);
+    border: 3px solid #5d0308;
+    border-radius: 6px;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.22),
+        0 0 18px rgba(255, 35, 40, 0.72);
+    display: block;
+    height: 48px;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    width: 48px;
+}
+
+.defuse-button.is-safe .defuse-light {
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.48), transparent 0 17%),
+        linear-gradient(145deg, #73f08e 0%, var(--button-green) 48%, #116d2f 100%);
+    border-color: #0b4e21;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.22),
+        0 0 20px rgba(53, 208, 91, 0.72);
+}
+
+.defuse-button.is-expired .defuse-light {
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.08), transparent 0 17%),
+        linear-gradient(145deg, #16181b 0%, #07080a 55%, #000 100%);
+    border-color: #000;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.06),
+        0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+.vent-panel {
+    align-items: center;
+    background: linear-gradient(180deg, #262b31 0%, #111418 100%);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 264px;
+    justify-content: center;
+    padding: 18px 14px;
+    width: 78px;
+}
+
+.vent-panel span {
+    background: #08090b;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+    display: block;
+    height: 4px;
+    width: 48px;
+}
+
+.control-panel {
+    background: linear-gradient(180deg, #2b3037 0%, #171a1f 100%);
+    border-radius: 8px;
+    display: grid;
+    gap: 12px;
+    grid-template-rows: auto auto 1fr;
+    min-width: 0;
+    padding: 12px;
+}
+
+.timer-screen {
+    align-items: center;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 30%),
+        #07090b;
+    border-radius: 6px;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px 10px 0;
+}
+
+.lcd-digits {
+    color: #ff1921;
+    font-family: 'VT323', monospace;
+    font-size: 82px;
+    line-height: 0.9;
+    text-shadow:
+        0 0 12px rgba(255, 25, 33, 0.9),
+        0 0 28px rgba(255, 25, 33, 0.32);
+    white-space: nowrap;
+}
+
+.lcd-digits.panic {
+    animation: lcd-pulse 0.42s ease-in-out infinite alternate;
+}
+
+.lcd-digits.safe {
+    color: #43e46c;
+    font-size: 70px;
+    text-shadow:
+        0 0 12px rgba(67, 228, 108, 0.9),
+        0 0 28px rgba(67, 228, 108, 0.32);
+}
+
+@keyframes lcd-pulse {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.58;
+    }
+}
+
+.hex-entry-row {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 176px minmax(0, 1fr);
+    min-width: 0;
+}
+
+.hex-form {
+    background: #07090b;
+    border-radius: 6px;
+    height: 52px;
+    min-width: 0;
+    position: relative;
+}
+
+.hex-input {
+    height: 1px;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 1px;
+}
+
+.hex-input:focus {
+    outline: 0;
+}
+
+.hex-form:has(.hex-input.is-invalid) .entry-preview {
+    animation: invalid-shake 0.18s linear 2;
+    border-color: #1f5330;
+}
+
+.entry-preview {
+    align-items: center;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 35%),
+        #050708;
+    border-radius: 6px;
+    color: #0ee742;
+    display: flex;
+    font-family: 'VT323', monospace;
+    font-size: 46px;
+    height: 52px;
+    justify-content: flex-start;
+    line-height: 1;
+    overflow: hidden;
+    padding: 2px 16px 0;
+    text-shadow:
+        0 0 8px rgba(14, 231, 66, 0.8),
+        0 0 18px rgba(14, 231, 66, 0.28);
+    white-space: pre;
+    width: 100%;
+}
+
+@keyframes invalid-shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(4px);
+    }
+}
+
+.keypad-grid {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.hex-key {
+    align-items: center;
+    aspect-ratio: 1 / 0.78;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 36%),
+        #d6cbb4;
+    border: 3px solid #08090b;
+    border-radius: 6px;
+    box-shadow:
+        inset 0 -4px 0 rgba(0, 0, 0, 0.16),
+        inset 0 2px 0 rgba(255, 255, 255, 0.55),
+        0 3px 0 #050607;
+    color: #07080a;
+    cursor: pointer;
+    display: flex;
+    font-size: 38px;
+    justify-content: center;
+    line-height: 1;
+    min-height: 58px;
+    padding: 0;
+    text-align: center;
+}
+
+.hex-key:hover:not(:disabled),
+.hex-key:focus-visible:not(:disabled) {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 36%),
+        #dfd3ba;
+}
+
+.hex-key:focus-visible {
+    outline: 2px solid #232a31;
+    outline-offset: 2px;
+}
+
+.hex-key:active:not(:disabled) {
+    box-shadow:
+        inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+        inset 0 2px 0 rgba(255, 255, 255, 0.4),
+        0 1px 0 #050607;
+    transform: translateY(2px);
+}
+
+.hex-key:disabled {
+    cursor: default;
+    opacity: 0.58;
+}
+
+.clear-key {
+    aspect-ratio: auto;
+    font-size: 30px;
+    height: 52px;
+    min-height: 0;
+    width: 100%;
+}
+
+@media (max-width: 840px) {
+    body {
+        padding: 16px;
+    }
+
+    .bomb-chassis {
+        max-width: 560px;
+        padding: 48px 20px 28px;
+    }
+
+    .bomb-stage {
+        width: calc(100vw - 32px);
+    }
+
+    .bomb-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .center-column {
+        align-items: center;
+        grid-template-columns: 88px minmax(0, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .vent-panel {
+        flex-direction: row;
+        gap: 11px;
+        height: 78px;
+        padding: 14px;
+        width: 100%;
+    }
+
+    .vent-panel span {
+        height: 48px;
+        width: 4px;
+    }
+
+    .timer-screen {
+        height: 88px;
+    }
+
+    .lcd-digits {
+        font-size: 68px;
+    }
+
+    .lcd-digits.safe {
+        font-size: 58px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+
+    .bomb-stage {
+        width: calc(100vw - 16px);
+    }
+
+    .bomb-chassis {
+        padding: 46px 12px 24px;
+    }
+
+    .case-screw {
+        height: 28px;
+        width: 28px;
+    }
+
+    .screw-tl,
+    .screw-bl {
+        left: 14px;
+    }
+
+    .screw-tr,
+    .screw-br {
+        right: 14px;
+    }
+
+    .wire-bay,
+    .control-panel {
+        padding: 9px;
+    }
+
+    .wire-rack {
+        min-height: 328px;
+    }
+
+    .wire-item {
+        grid-template-columns: 18px 24px minmax(0, 1fr) 24px 18px;
+        height: 36px;
+    }
+
+    .wire-screw {
+        height: 18px;
+        width: 18px;
+    }
+
+    .wire-terminal {
+        height: 30px;
+    }
+
+    .center-column {
+        grid-template-columns: 76px minmax(0, 1fr);
+    }
+
+    .defuse-button {
+        height: 68px;
+        width: 68px;
+    }
+
+    .defuse-light {
+        height: 42px;
+        width: 42px;
+    }
+
+    .timer-screen {
+        height: 78px;
+    }
+
+    .lcd-digits {
+        font-size: 58px;
+    }
+
+    .lcd-digits.safe {
+        font-size: 50px;
+    }
+
+    .hex-key {
+        font-size: 30px;
+        min-height: 48px;
+    }
+
+    .clear-key {
+        font-size: 26px;
+        height: 52px;
+        min-height: 0;
+    }
+
+}

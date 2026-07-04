@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widthdevice-width,initial-scale=1.0">
+    <title>EXTRACTION POINT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="extractor.css">
+
+</head>
+
+<body>
+    <div class="stage">
+        <nav>
+            <div class="nav-bar">
+                <a class="nav-cta" href="/landing/landing.html">Landing</a>
+                <a class="nav-cta" href="/store/store.html">Store</a>
+                <a class="nav-cta" href="/extractor/extractor.html">Extraction</a>
+                <a class="nav-cta" href="/login/login.html">Unit Login</a>
+           </div>
+        </nav>
+        <div class="hero">
+            <h1><span class="y">Extraction Point</span></h1>
+        </div>
+        <img src="repo-extract-point.png" alt="repo-extraction-point">
+        <div class="extractor-field">
+            <input type="text">
+            <button class="btn" id="get">Send</button>
+        </div>
+    </div>
+        <dialog class="modal" id="loot-modal">
+        <div class="modal-head">
+            <span class="modal-title">SECRET FLAG GET!</span>
+            <button class="modal-x" id="modal-x" aria-label="Fechar">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p class="modal-msg" id="modal-msg">Congratulations, you got your flag:</p>
+            <button class="modal-ok" id="modal-ok">Close</button>
+        </div>
+    <script>
+        const modal = document.getElementById('loot-modal');
+        const getBtn = document.getElementById('get');
+        const input = document.querySelector('.extractor-field input');
+        const msgEl = document.getElementById('modal-msg');
+        getBtn.addEventListener('click', async () => {
+            const flag = input.value.trim();
+            if (!flag) return;
+
+            try {
+                const res = await fetch('http://repo:3000/api/extract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ flag }),
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.status === 'ok') {
+                    msgEl.textContent = `Congratulations, you got your flag: ${data.message}`;
+                    modal.showModal();
+                } else {
+                    alert(data.message || 'FLAG REJECTED.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Erro ao comunicar com o servidor.');
+            }
+        });
+
+        document.getElementById('modal-x').addEventListener('click', () => modal.close());
+        document.getElementById('modal-ok').addEventListener('click', () => modal.close());
+
+        modal.addEventListener('click', (e) => {
+            const r = modal.getBoundingClientRect();
+            const dentro = e.clientX >= r.left && e.clientX <= r.right &&
+                e.clientY >= r.top && e.clientY <= r.bottom;
+            if (!dentro) modal.close();
+        });
+    </script>
+    </dialog>
+</body>

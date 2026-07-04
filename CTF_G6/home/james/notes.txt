@@ -1,0 +1,8 @@
+Brookhaven maintenance notes
+----------------------------
+
+The legacy privilege policy was written to allow emergency editing under any
+service account except root. The restriction was considered sufficient because
+root was explicitly blacklisted.
+
+The maintenance workstation was never upgraded after the 2019 audit.

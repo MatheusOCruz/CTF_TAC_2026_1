@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — DETIC | UnB</title>
+    <meta name="description" content="Acesso administrativo à DETIC - Diretoria de Tecnologia da Informação e Comunicação da UnB">
+    <!-- Fontes do Google removidas para o laboratório funcionar offline -->
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter Tight',sans-serif;background:#f4f5f6;color:#414247;min-height:100vh;display:flex;flex-direction:column}
+
+        /* Gov.br top bar */
+        .gov-bar{background:#071d41;padding:8px 0;font-size:13px}
+        .gov-bar .container{max-width:1170px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between}
+        .gov-bar .gov-left{display:flex;align-items:center;gap:8px;color:#fff;font-weight:600;font-size:12px}
+        .gov-bar .gov-left .br-flag{font-size:16px}
+        .gov-bar .gov-links{display:flex;gap:16px}
+        .gov-bar .gov-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:12px;transition:color .2s}
+        .gov-bar .gov-links a:hover{color:#fff}
+
+        /* Header */
+        .header{background:#fbfbfc;padding:0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+        .header .container{max-width:1170px;margin:0 auto;padding:14px 15px;display:flex;align-items:center;justify-content:space-between}
+        .logo-area{display:flex;align-items:center;gap:14px}
+        .logo-area .unb-logo{display:flex;align-items:center;gap:10px}
+        .logo-area .unb-emblem{width:44px;height:44px}
+        .logo-area .unb-emblem svg{width:44px;height:44px}
+        .logo-text{border-left:2px solid #e0e0e0;padding-left:12px}
+        .logo-text h1{font-size:17px;color:#003366;font-weight:700;line-height:1.2;letter-spacing:-.3px}
+        .logo-text p{font-size:12px;color:#5d5d5d;font-weight:400}
+        .header-nav{display:flex;align-items:center;gap:6px}
+        .header-nav a{color:#003366;text-decoration:none;font-size:15px;font-weight:700;padding:10px 14px;border-radius:4px;transition:all .2s}
+        .header-nav a:hover{background:rgba(0,51,102,.06)}
+
+        /* Main */
+        .main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 20px}
+        .login-wrapper{display:flex;gap:40px;max-width:900px;width:100%;align-items:flex-start;flex-wrap:wrap}
+
+        /* Info side */
+        .login-info{flex:1;min-width:280px;padding-top:20px}
+        .login-info h2{font-size:28px;color:#003366;font-weight:700;margin-bottom:16px;line-height:1.2}
+        .login-info p{color:#5d5d5d;font-size:14px;line-height:1.7;margin-bottom:14px}
+        .login-info .contact-box{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:18px 20px;margin-top:10px}
+        .login-info .contact-box h4{color:#003366;font-size:14px;font-weight:700;margin-bottom:8px}
+        .login-info .contact-box p{color:#5d5d5d;font-size:13px;line-height:1.8;margin-bottom:0}
+        .login-info .alert-box{background:#fff;border:1px solid #e0e0e0;border-left:4px solid #cca61d;padding:14px 18px;border-radius:4px;font-size:13px;color:#5d5d5d;display:flex;align-items:flex-start;gap:10px;margin-top:16px}
+        .login-info .alert-box span:first-child{font-size:18px}
+
+        /* Login panel */
+        .login-panel{flex:0 0 400px;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:40px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+        .login-panel .login-icon{text-align:center;margin-bottom:14px}
+        .login-panel .login-icon .icon-circle{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;background:#003366;border-radius:50%;font-size:24px}
+        .login-panel h3{text-align:center;color:#003366;font-size:20px;font-weight:700;margin-bottom:4px}
+        .login-panel .login-sub{text-align:center;color:#5d5d5d;font-size:13px;margin-bottom:28px}
+        .field{margin-bottom:18px}
+        .field label{display:block;color:#414247;font-size:13px;font-weight:600;margin-bottom:6px}
+        .field input{width:100%;padding:12px 14px;background:#fff;border:1px solid #ccc;border-radius:6px;color:#333;font-size:14px;font-family:'Inter Tight',sans-serif;transition:border-color .2s,box-shadow .2s}
+        .field input:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,102,.08)}
+        .field input::placeholder{color:#aaa}
+        .btn-login{width:100%;padding:13px;background:#003366;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter Tight',sans-serif;transition:background .2s}
+        .btn-login:hover{background:#004a8f}
+        .login-warn{margin-top:18px;background:#fef3f3;border:1px solid #f0d0d0;color:#b52a2a;padding:10px 14px;border-radius:6px;font-size:12px;text-align:center}
+        .back-link{display:block;text-align:center;margin-top:16px;color:#003366;font-size:13px;text-decoration:none;font-weight:600;transition:color .2s}
+        .back-link:hover{color:#004a8f;text-decoration:underline}
+
+        /* Footer */
+        .footer{background:#003366;padding:24px 0;color:#fff;margin-top:auto}
+        .footer .container{max-width:1170px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+        .footer-brand{display:flex;align-items:center;gap:14px}
+        .footer-brand .footer-logo{font-size:20px;font-weight:700;color:#fff;letter-spacing:1px}
+        .footer-brand .sep{width:1px;height:24px;background:rgba(255,255,255,.2)}
+        .footer-brand .acesso-info{font-size:11px;color:rgba(255,255,255,.7);line-height:1.4}
+        .footer p{color:rgba(255,255,255,.6);font-size:12px}
+
+        @media(max-width:768px){
+            .login-wrapper{flex-direction:column}
+            .login-panel{flex:1;width:100%}
+            .login-info{padding-top:0}
+            .login-info h2{font-size:22px}
+            .header .container{flex-wrap:wrap;gap:10px}
+            .header-nav{width:100%}
+            .header-nav a{font-size:13px;padding:8px 10px}
+            .footer .container{flex-direction:column;text-align:center}
+        }
+    </style>
+</head>
+<body>
+
+<!-- Gov.br Bar -->
+<div class="gov-bar">
+    <div class="container">
+        <div class="gov-left">
+            <span class="br-flag">🇧🇷</span>
+            <span>GOVERNO FEDERAL</span>
+        </div>
+        <div class="gov-links">
+            <a href="/">Portal UnB</a>
+            <a href="#">Acessibilidade</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo-area">
+            <div class="unb-logo">
+                <div class="unb-emblem">
+                    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="22" cy="22" r="20" fill="#003366" stroke="#003366" stroke-width="1"/>
+                        <text x="22" y="26" text-anchor="middle" fill="#fff" font-family="Inter Tight,sans-serif" font-size="14" font-weight="700">UnB</text>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>DETIC</h1>
+                    <p>Diretoria de Tecnologia da Informação e Comunicação</p>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <a href="/detic/">← Voltar ao Portal</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Login Area -->
+<main class="main">
+    <div class="login-wrapper">
+        <div class="login-info">
+            <h2>Acesso Administrativo</h2>
+            <p>O painel administrativo da DETIC é restrito aos servidores autorizados. Utilize suas credenciais institucionais (matrícula SIAPE) para autenticação.</p>
+            <div class="contact-box">
+                <h4>Problemas com acesso?</h4>
+                <p>📧 detic@unb.br<br>📞 Ramal 3107<br>🕐 Seg–Sex, 8h às 18h</p>
+            </div>
+            <div class="alert-box">
+                <span>⚠️</span>
+                <span>Este ambiente é monitorado. O acesso não autorizado constitui infração administrativa e será encaminhado às autoridades competentes.</span>
+            </div>
+        </div>
+        <div class="login-panel">
+            <div class="login-icon"><div class="icon-circle">🔐</div></div>
+            <h3>Área Restrita</h3>
+            <p class="login-sub">Autenticação de servidores DETIC</p>
+            <form action="erro.html" method="GET" onsubmit="return handleLogin(event);">
+                <div class="field">
+                    <label for="input-siape">Matrícula SIAPE</label>
+                    <input type="text" name="siape" id="input-siape" placeholder="0000000" required>
+                </div>
+                <div class="field">
+                    <label for="input-senha">Senha</label>
+                    <input type="password" name="senha" id="input-senha" placeholder="Senha de acesso" required>
+                </div>
+                <button type="submit" class="btn-login" id="btn-autenticar">Autenticar</button>
+            </form>
+            <script>
+            function handleLogin(e) {
+                // Simula uma validação falsa — qualquer tentativa redireciona para erro.html
+                e.target.action = 'erro.html';
+                return true;
+            }
+            </script>
+            <div class="login-warn">Tentativas não autorizadas serão registradas e reportadas.</div>
+            <a href="/detic/" class="back-link">← Voltar ao Portal DETIC</a>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-brand">
+            <div class="footer-logo">UnB</div>
+            <div class="sep"></div>
+            <div class="acesso-info">DETIC — Diretoria de Tecnologia<br>da Informação e Comunicação</div>
+        </div>
+        <p>© 2024 Universidade de Brasília — Todos os direitos reservados</p>
+    </div>
+</footer>
+
+<script>
+    console.log("%c🐺 UnBreakable", "color: #b52a2a; font-size: 24px; font-weight: bold;");
+    console.log("Acesso à área administrativa do DETIC?");
+    console.log("Os admins daqui devem saber o que estão fazendo... ou será que deixaram arquivos de backup dando sopa por aí?");
+</script>
+
+</body>
+</html>

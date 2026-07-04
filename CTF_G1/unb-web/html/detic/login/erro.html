@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro de Autenticação — DETIC | UnB</title>
+    <link rel="icon" type="image/jpeg" href="unbreakable_favicon.jpg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: #f4f5f6;
+            color: #414247;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .error-header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .error-header h1 {
+            font-family: sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #b52a2a;
+            letter-spacing: 1px;
+        }
+        .error-header p {
+            font-family: sans-serif;
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .game-wrapper {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 10px 20px 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .game-label {
+            font-family: sans-serif;
+            font-size: 0.7rem;
+            color: #bbb;
+            text-align: right;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        #game-canvas {
+            display: block;
+            width: 100%;
+            height: 150px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #999;
+            font-family: sans-serif;
+            margin-top: 6px;
+        }
+        .score-board span { font-weight: 700; color: #555; }
+
+        .troll-box {
+            margin-top: 20px;
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-left: 5px solid #e67e22;
+            border-radius: 8px;
+            padding: 16px 20px;
+            max-width: 800px;
+            width: 100%;
+        }
+        .troll-title {
+            font-family: sans-serif;
+            font-weight: 700;
+            color: #856404;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+        .troll-box p {
+            font-family: sans-serif;
+            font-size: 0.82rem;
+            color: #6d5202;
+            line-height: 1.7;
+        }
+        .troll-box code {
+            background: #ffeeba;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.78rem;
+            color: #7d4e00;
+        }
+
+        .back-btn {
+            margin-top: 18px;
+            display: inline-block;
+            font-family: sans-serif;
+            background: #003366;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background .2s;
+        }
+        .back-btn:hover { background: #004a8f; }
+
+        .footer-note {
+            margin-top: 14px;
+            font-family: sans-serif;
+            font-size: 0.72rem;
+            color: #bbb;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="error-header">
+    <h1>⛔ ACESSO NEGADO — DETIC/UnB</h1>
+    <p>Enquanto você espera, que tal um joguinho?</p>
+</div>
+
+<div class="game-wrapper">
+    <div class="game-label">ESPAÇO / ↑ = pular &nbsp;|&nbsp; ↓ = agachar &nbsp;|&nbsp; clique para iniciar</div>
+    <canvas id="game-canvas"></canvas>
+    <div class="score-board">
+        <span id="hi-display">HI 00000</span>
+        <span id="score-display">00000</span>
+    </div>
+</div>
+
+<div class="troll-box">
+    <div class="troll-title">😂 Você caiu na pegadinha do DETIC!</div>
+    <p>
+        <strong>Dica:</strong> talvez você deva procurar em outro lugar... o sistema que realmente interessa
+        não é esse painel aqui. <em>Qual sistema os alunos usam pra acessar as aulas?</em>
+    </p>
+</div>
+
+<a href="/detic/login/" class="back-btn">← Tentar novamente (vai na fé)</a>
+
+<p class="footer-note">
+    Este acesso foi registrado. Ticket #UnB-4821 — DETIC/UnB © 2024
+</p>
+
+<script>
+(function () {
+    'use strict';
+
+    var LW = 800, LH = 150, GROUND = 116;
+
+    var canvas  = document.getElementById('game-canvas');
+    var ctx     = canvas.getContext('2d');
+    var scoreEl = document.getElementById('score-display');
+    var hiEl    = document.getElementById('hi-display');
+
+    // Carregar 6 sprites individuais
+    function loadImg(src) { var i = new Image(); i.src = src; return i; }
+    var sprites = {
+        idle: loadImg('wolf_sprites1.png'),           // parado / pulando
+        run:  [loadImg('wolf_sprites2.png'),           // correndo passo 1
+               loadImg('wolf_sprites3.png'),           // correndo passo 2
+               loadImg('wolf_sprites4.png')],          // correndo passo 3
+        duck: [loadImg('wolf_sprites5.png'),           // agachado passo 1
+               loadImg('wolf_sprites6.png')]           // agachado passo 2
+    };
+
+    // Tamanhos de desenho no espaço lógico (800x150)
+    var DRAW_W = 70, DRAW_H = 55;       // em pé / correndo
+    var DUCK_W = 85, DUCK_H = 38;       // agachado (mais largo, menos alto)
+    // Hitbox (menor que o sprite visual)
+    var HIT_W = 40, HIT_H = 45, HIT_H_DUCK = 28;
+
+    var state = 'idle', score = 0, hiScore = 0, speed = 6, tick = 0;
+    var wolf = { x: 80, y: GROUND, vy: 0, ducking: false };
+    var GRAVITY = 1.1, JUMP_VY = -16;
+    var obstacles = [], nextSpawn = 90;
+    var clouds = [{ x: 250, y: 28 }, { x: 550, y: 45 }];
+    var groundTick = 0;
+
+    function resize() {
+        var r = canvas.getBoundingClientRect();
+        canvas.width  = Math.round(r.width  * devicePixelRatio);
+        canvas.height = Math.round(r.height * devicePixelRatio);
+    }
+
+    function onJump() {
+        if (state === 'idle' || state === 'dead') { startGame(); return; }
+        if (wolf.y >= GROUND - 1) wolf.vy = JUMP_VY;
+    }
+    function onDuckStart() { if (state === 'playing') wolf.ducking = true; }
+    function onDuckEnd()   { wolf.ducking = false; }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); onJump(); }
+        if (e.code === 'ArrowDown') { e.preventDefault(); onDuckStart(); }
+    });
+    document.addEventListener('keyup', function (e) { if (e.code === 'ArrowDown') onDuckEnd(); });
+    canvas.addEventListener('click', onJump);
+    canvas.addEventListener('touchstart', function (e) { e.preventDefault(); onJump(); }, { passive: false });
+    canvas.addEventListener('touchend',   function (e) { e.preventDefault(); onDuckEnd(); }, { passive: false });
+
+    function startGame() {
+        state = 'playing'; score = 0; speed = 6; tick = 0; groundTick = 0;
+        obstacles = []; nextSpawn = 90;
+        clouds = [{ x: 250, y: 28 }, { x: 550, y: 45 }];
+        wolf.y = GROUND; wolf.vy = 0; wolf.ducking = false;
+    }
+
+    function spawnObstacle() {
+        var r = Math.random();
+        var type = r < 0.4 ? 'sm' : r < 0.75 ? 'lg' : 'group';
+        var h = type === 'lg' ? 50 : 38;
+        var w = type === 'group' ? 62 : type === 'lg' ? 24 : 18;
+        obstacles.push({ x: LW + 10, w: w, h: h, type: type });
+        nextSpawn = Math.max(38, Math.round(55 + Math.random() * 70 - speed * 2));
+    }
+
+    function collides(o) {
+        var M = 8;
+        var dh = wolf.ducking ? HIT_H_DUCK : HIT_H;
+        var wx1 = wolf.x + M, wy1 = wolf.y - dh + M;
+        var wx2 = wolf.x + HIT_W - M, wy2 = wolf.y - M;
+        var ox1 = o.x + M, oy1 = GROUND - o.h + M;
+        var ox2 = o.x + o.w - M, oy2 = GROUND - M;
+        return wx1 < ox2 && wx2 > ox1 && wy1 < oy2 && wy2 > oy1;
+    }
+
+    function drawSprite(img, x, y, w, h) {
+        if (!img.complete || !img.naturalWidth) return;
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(img, x, y, w, h);
+    }
+
+    function draw() {
+        var cw = canvas.width, ch = canvas.height;
+        var sx = cw / LW, sy = ch / LH;
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.fillStyle = '#f7f7f7';
+        ctx.fillRect(0, 0, cw, ch);
+
+        ctx.save();
+        ctx.scale(sx, sy);
+
+        // Nuvens
+        ctx.fillStyle = '#d8d8d8';
+        for (var ci = 0; ci < clouds.length; ci++) {
+            var c = clouds[ci];
+            ctx.fillRect(c.x, c.y, 70, 8);
+            ctx.fillRect(c.x + 10, c.y - 10, 50, 14);
+            ctx.fillRect(c.x + 20, c.y - 18, 30, 12);
+        }
+
+        // Chão
+        ctx.fillStyle = '#535353';
+        ctx.fillRect(0, GROUND + 2, LW, 2);
+        ctx.fillStyle = '#c0c0c0';
+        var gOff = (groundTick * 2) % 30;
+        for (var gx = -30 + gOff; gx < LW; gx += 30) {
+            ctx.fillRect(gx, GROUND + 6, 14, 1);
+            ctx.fillRect(gx + 18, GROUND + 9, 8, 1);
+        }
+
+        // Cactos
+        ctx.fillStyle = '#535353';
+        for (var oi = 0; oi < obstacles.length; oi++) {
+            var o = obstacles[oi];
+            if (o.type === 'group') {
+                var offsets = [0, 21, 42];
+                for (var di = 0; di < offsets.length; di++) {
+                    var d = offsets[di];
+                    ctx.fillRect(o.x + d + 4, GROUND - 38, 10, 38);
+                    ctx.fillRect(o.x + d,     GROUND - 22, 18,  8);
+                    ctx.fillRect(o.x + d,     GROUND - 30,  6, 18);
+                    ctx.fillRect(o.x + d + 12, GROUND - 28, 6, 16);
+                }
+            } else if (o.type === 'lg') {
+                ctx.fillRect(o.x + 7, GROUND - 50, 10, 50);
+                ctx.fillRect(o.x,     GROUND - 32, 24, 10);
+                ctx.fillRect(o.x,     GROUND - 42,  8, 22);
+                ctx.fillRect(o.x + 16, GROUND - 38, 8, 18);
+            } else {
+                ctx.fillRect(o.x + 4, GROUND - 38, 10, 38);
+                ctx.fillRect(o.x,     GROUND - 22, 18,  8);
+                ctx.fillRect(o.x,     GROUND - 30,  6, 18);
+                ctx.fillRect(o.x + 12, GROUND - 28, 6, 16);
+            }
+        }
+
+        // Lobo UnBreakable
+        var img, dw, dh;
+        if (!wolf.ducking) {
+            if (wolf.y < GROUND - 1) {
+                img = sprites.idle;
+            } else {
+                img = sprites.run[Math.floor(tick / 5) % 3];
+            }
+            dw = DRAW_W; dh = DRAW_H;
+        } else {
+            img = sprites.duck[Math.floor(tick / 5) % 2];
+            dw = DUCK_W; dh = DUCK_H;
+        }
+        // Patas tocam exatamente o GROUND
+        var wx = wolf.x - 15;
+        var wy = wolf.y - dh;
+        drawSprite(img, wx, wy, dw, dh);
+
+        // Overlay
+        if (state !== 'playing') {
+            ctx.fillStyle = 'rgba(247,247,247,0.60)';
+            ctx.fillRect(0, 0, LW, LH);
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            if (state === 'idle') {
+                ctx.font = 'bold 14px monospace';
+                ctx.fillText('Clique ou pressione ESPAÇO para jogar', LW / 2, LH / 2 + 5);
+            } else {
+                ctx.font = 'bold 15px monospace';
+                ctx.fillText('GAME OVER', LW / 2, LH / 2 - 6);
+                ctx.font = '12px monospace';
+                ctx.fillText('ESPAÇO / clique para reiniciar', LW / 2, LH / 2 + 14);
+            }
+            ctx.textAlign = 'left';
+        }
+
+        ctx.restore();
+
+        scoreEl.textContent = String(Math.floor(score)).padStart(5, '0');
+        hiEl.textContent    = 'HI ' + String(Math.floor(hiScore)).padStart(5, '0');
+    }
+
+    function loop() {
+        requestAnimationFrame(loop);
+
+        if (state === 'playing') {
+            tick++; groundTick++;
+            score += 0.12 * (speed / 6);
+            if (tick % 400 === 0) speed = Math.min(speed + 0.5, 16);
+
+            wolf.vy += GRAVITY;
+            wolf.y  += wolf.vy;
+            if (wolf.y > GROUND) { wolf.y = GROUND; wolf.vy = 0; }
+            if (wolf.ducking && wolf.y < GROUND - 1) wolf.ducking = false;
+
+            for (var i = 0; i < clouds.length; i++) clouds[i].x -= 1.2;
+            clouds = clouds.filter(function (c) { return c.x > -80; });
+            if (clouds.length < 3 && Math.random() < 0.004)
+                clouds.push({ x: LW + 10, y: 15 + Math.random() * 40 });
+
+            nextSpawn--;
+            if (nextSpawn <= 0) spawnObstacle();
+            for (var j = 0; j < obstacles.length; j++) obstacles[j].x -= speed;
+            obstacles = obstacles.filter(function (o) { return o.x + o.w > -10; });
+
+            if (obstacles.some(collides)) {
+                state = 'dead';
+                if (score > hiScore) hiScore = score;
+            }
+        } else {
+            groundTick++;
+        }
+
+        draw();
+    }
+
+    resize();
+    window.addEventListener('resize', function () { resize(); draw(); });
+    loop();
+})();
+</script>
+
+</body>
+</html>
+

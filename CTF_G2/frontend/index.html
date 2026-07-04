@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprender 4 - Ambiente Virtual de Aprendizagem</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="dark-bg">
+    <canvas id="network-bg"></canvas>
+
+    <header class="navbar">
+        <a href="/" class="navbar-brand">
+            <img src="/img/logo.svg" alt="Aprender 4">
+            <span>Aprender 4</span>
+        </a>
+        <nav class="navbar-links">
+            <a href="/login.html" class="btn btn-outline btn-sm">Entrar</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Aprender 4</h1>
+            <p class="hero-subtitle">Ambiente Virtual de Aprendizagem</p>
+            <p class="hero-text">Bem-vindo(a) ao AVA da Universidade de Brasilia. Acesse seus cursos, envie atividades e acompanhe seu progresso.</p>
+            <a href="/login.html" class="btn btn-primary btn-lg">Acessar Plataforma</a>
+        </section>
+
+        <section class="features">
+            <div class="card feature-card">
+                <div class="feature-icon">&#128218;</div>
+                <h3>Cursos Online</h3>
+                <p>Acesse materiais de estudo e atividades de qualquer lugar.</p>
+            </div>
+            <div class="card feature-card">
+                <div class="feature-icon">&#128187;</div>
+                <h3>Laboratorio Virtual</h3>
+                <p>Execute codigo diretamente na plataforma com suporte a Python e Bash.</p>
+            </div>
+            <div class="card feature-card">
+                <div class="feature-icon">&#128202;</div>
+                <h3>Acompanhamento</h3>
+                <p>Acompanhe seu progresso e resultados em tempo real.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        Aprender 4 &copy; 2026 - Universidade de Brasilia
+    </footer>
+
+    <script src="/js/auth.js?v=2"></script>
+    <script>Auth.redirectIfLoggedIn();</script>
+    <script src="/js/network-bg.js?v=2"></script>
+</body>
+</html>

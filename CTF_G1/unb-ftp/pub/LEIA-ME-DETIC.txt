@@ -1,0 +1,10 @@
+=====================================================
+          AVISO INTERNO - DETIC / UnB
+=====================================================
+Servidor de backup DETIC - Uso Interno
+Acesso de manutenção temporário:
+  Usuário: admin
+  Senha:   UnB@2024!
+
+* Remover este arquivo após migração. - Ticket #4821
+=====================================================

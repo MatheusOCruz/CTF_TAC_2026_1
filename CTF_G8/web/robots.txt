@@ -1,0 +1,16 @@
+User-agent: *
+
+# Área de acesso de serviçais — não indexar
+Disallow: /servants_registry/
+
+# Adega proibida — apenas Lady Dimitrescu
+Disallow: /blood_cellar/
+
+# Registros internos do castelo
+Disallow: /castle_records/
+
+# Relatórios de patrulha e detecção
+Disallow: /intrusion_report/
+
+# Permitido: galeria pública
+Allow: /portraits/

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Aprender 4</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="/dashboard.html" class="navbar-brand">
+            <img src="/img/logo.svg" alt="Aprender 4">
+            <span>Aprender 4</span>
+        </a>
+        <nav class="navbar-links">
+            <a href="/dashboard.html" class="active">Inicio</a>
+            <a href="/submissoes.html">Exercicio</a>
+            <a href="/admin.html" id="admin-link" class="hidden">Admin</a>
+            <span id="user-greeting"></span>
+            <button onclick="Auth.logout()" class="btn btn-outline btn-sm">Sair</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="dashboard-hero">
+            <h1 id="welcome-title">Painel do Aluno</h1>
+            <div id="approval-status"></div>
+        </section>
+
+        <section class="dashboard-cards" id="dashboard-cards"></section>
+    </main>
+
+    <footer class="footer">
+        Aprender 4 &copy; 2026 - Universidade de Brasilia
+    </footer>
+
+    <script src="/js/auth.js?v=2"></script>
+    <script src="/js/api.js?v=2"></script>
+    <script src="/js/dashboard.js?v=2"></script>
+</body>
+</html>

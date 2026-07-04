@@ -1,0 +1,13 @@
+# =====================================================
+# Export parcial de senhas para testes de homologação
+# Gerado automaticamente em 05/03/2024
+# Script: /opt/detic/export_users.sh
+# CONFIDENCIAL — NÃO USAR EM PRODUÇÃO
+# =====================================================
+unb2014
+aprender123
+sigaa@unb
+D3t1c_4dm1n
+t1_unb_2023
+r00t_h0m0l0g
+moodle_backup

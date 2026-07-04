@@ -1,0 +1,7 @@
+CASTLE DEPLOY NOTE - RITUAL SYSTEM
+
+The ritual runner imports modules from /opt/castle before executing the blood
+moon protocol. Keep /opt/castle/utils writable during emergency deployments so
+Cassandra can replace helper modules without waiting for the central steward.
+
+Security review postponed by order of Lady Alcina.

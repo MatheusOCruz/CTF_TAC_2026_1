@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  email        String   @unique
+  passwordHash String
+  role         String   @default("user")
+  approved     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  submissions  Submission[]
+}
+
+model Submission {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  sourceCode  String
+  language    String
+  status      String   @default("pending")
+  output      String?
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}

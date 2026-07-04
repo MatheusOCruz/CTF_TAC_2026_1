@@ -1,0 +1,260 @@
+:root {
+    --void: #0a0806;
+    --panel: #14100b;
+    --panel-2: #0d0a07;
+    --line: #3a2a18;
+    --scan: #ff9d2e;
+    --scan-dim: #b35a12;
+    --surplus: #ffd23f;
+    --active: #2fe3e3;
+    --scrap: #ff3b3b;
+    --ash: #9a8676;
+    --bone: #f0e3d4;
+
+
+
+    --scan-green: #4dff7c;
+    --scan-dim-green: #2a7a45;
+    --panel-green: #0d120e;
+    --line-green: #1d2a20;
+    --alternative-green: rgba(77, 255, 124);
+    --alternative-green-transition: rgba(255, 59, 59);
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Space Mono";
+    min-height: 100vh;
+    overflow-y: auto;
+    background-image:
+        radial-gradient(120% 90% at 50% -10%, rgba(100, 61, 17, 0.22), transparent 60%),
+        radial-gradient(100% 70% at 50% 120%, rgba(66, 14, 14, 0.1), transparent 60%);
+    ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-color: var(--void);
+}
+
+.card {
+    width: 100%;
+    border: 1px solid var(--line);
+    background-color: var(--panel);
+    max-width: 440px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10vh;
+    box-shadow: 0 0 0 1px rgba(255, 157, 46, .06), 0 30px 80px rgba(0, 0, 0, .6);
+    animation: boot .6s ease both;
+
+    .card-header {
+        padding: 5px;
+        border-bottom: 3px solid var(--line);
+        display: flex;
+        flex-direction: row;
+        h3 {
+            font-size: .62rem;
+            letter-spacing: .32em;
+            color: var(--scrap);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 20px
+        }
+        .s{
+            color: var(--bone);
+        }
+        color: var(--scan);
+    }
+
+    .card-body {
+        padding: 28px;
+
+        .card-body-top {
+            h3 {
+                font-size: .62rem;
+                letter-spacing: .32em;
+                color: var(--scrap);
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                margin-bottom: 20px
+            }
+
+            h3::before {
+                content: "";
+                width: 26px;
+                height: 1px;
+                background: var(--scrap)
+            }
+        }
+
+        .card-top-letters {
+            font-size: .74rem;
+            color: var(--ash);
+            margin-bottom: 26px;
+            line-height: 1.6
+        }
+
+        h1 {
+            font-family: "Chakra Petch", sans-serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            line-height: 1.05;
+            text-transform: uppercase;
+            margin-bottom: 8px
+        }
+
+
+        .btn {
+            background-color: var(--scan-dim);
+            width: 100%;
+            margin-top: 6px;
+            cursor: pointer;
+            font-family: "Chakra Petch", sans-serif;
+            font-weight: 700;
+            font-size: .82rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: #021006;
+            background: var(--scan);
+            border: none;
+            padding: 14px;
+            border-radius: 2px;
+            transition: filter .15s, transform .05s;
+            box-shadow: 0 0 22px rgba(220, 78, 13, 0.25);
+        }
+
+        .btn:hover {
+            background-color: var(--scan-dim);
+            cursor: pointer;
+        }
+
+        label {
+            display: block;
+            font-size: 0.6rem;
+            letter-spacing: .26em;
+            color: var(--scan-dim);
+            text-transform: uppercase;
+            margin: 8px 0 2px 2px;
+        }
+
+        input {
+            width: 100%;
+            background-color: #000;
+            border: 1px solid var(--line);
+            color: var(--scan);
+            font-family: "Space Mono", monospace;
+            font-size: .92rem;
+            letter-spacing: .06em;
+            padding: 13px 14px;
+            border-radius: 2px;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        input::placeholder {
+            color: #3a4a3e
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--scan);
+            box-shadow: 0 0 0 1px var(--scan), 0 0 18px rgba(255, 133, 77, 0.25)
+        }
+
+
+
+    }
+
+    .footer {
+        padding: 5px;
+
+        background-color: #0a0e0b;
+        border-top: 1px solid var(--line);
+
+        a,
+        span {
+            color: var(--scan-dim);
+            text-decoration: underline;
+        }
+
+        a,
+        span:hover {
+            color: var(--scan);
+            cursor: pointer;
+            text-shadow: 0 0 10px rgba(195, 66, 6, 0.5);
+        }
+    }
+}
+.msg {
+    margin-top: 14px;
+    font-size: .75rem;
+    color: var(--ash);
+}
+
+.msg.error {
+    color: var(--scrap);
+}
+
+.msg.correct {
+    color: var(--scan-green);
+}
+.wrap{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    justify-content: center;
+
+
+    .nav-bar {
+        position: fixed;     
+        top: 20px;           
+        left: 50%;          
+        transform: translateX(-50%); 
+
+
+        display: flex;
+        gap: 12px;
+        margin-bottom: 0;
+        padding: 12px 16px;
+        width: fit-content;
+        background: rgba(10, 8, 6, .55);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        backdrop-filter: blur(4px);
+        z-index: 5;
+        top:30px;
+    }
+    
+    .nav-cta {
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 700;
+        font-size: .66rem;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--scan);
+        text-decoration: none;
+        border: 1px solid var(--scan-dim);
+        padding: 9px 16px;
+        border-radius: 2px;
+        transition: .2s
+    }
+
+    .nav-cta:hover {
+        background: var(--scan);
+        color: #1a0e02;
+        box-shadow: 0 0 20px rgba(255, 157, 46, .3)
+    }
+}

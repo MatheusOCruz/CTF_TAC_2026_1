@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticação Inválida — SIGAA/UnB</title>
+    <link rel="icon" type="image/jpeg" href="unbreakable_favicon.jpg">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif; }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f3f6f9;
+            color: #333;
+        }
+
+        /* Header igual ao SIGAA */
+        .header {
+            background: #fff;
+            padding: 12px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #dce2e8;
+        }
+        .logo-unb { display: flex; width: 45px; height: 18px; border: 1px solid #165c27; }
+        .logo-unb .green { background: #00853f; flex: 1; }
+        .logo-unb .blue { background: #003366; flex: 1; position: relative; }
+        .logo-unb .blue::after {
+            content: '';
+            position: absolute; top: 0; bottom: 0; left: -1px;
+            width: 2px; background: white; transform: skewX(-15deg);
+        }
+        .header-title { font-weight: bold; color: #004b82; font-size: 18px; }
+        .header-subtitle {
+            color: #666; font-size: 13px;
+            border-left: 1px solid #ccc;
+            padding-left: 15px; margin-left: 5px;
+        }
+        .header-back {
+            margin-left: auto;
+            text-decoration: none;
+            color: #004b82;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .header-back:hover { text-decoration: underline; }
+
+        /* Faixa de alerta */
+        .alert-bar {
+            background: #d9534f;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Conteúdo principal */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px 60px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            padding: 40px 50px;
+            max-width: 720px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo-img {
+            max-width: 220px;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 28px;
+            border: 1px solid #dce2e8;
+        }
+
+        .card-title {
+            color: #004b82;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: #004b82;
+            margin: 0 auto 22px;
+            border-radius: 2px;
+        }
+
+        .card-body {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.75;
+            text-align: left;
+        }
+
+        .card-body p { margin-bottom: 12px; }
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .card-body strong { color: #004b82; }
+
+        .card-body a {
+            color: #004b82;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #9ab4cc;
+            transition: border-color 0.2s;
+        }
+        .card-body a:hover { border-color: #004b82; }
+
+        .quote {
+            margin-top: 24px;
+            padding: 14px 20px;
+            background: #e8eef3;
+            border-left: 4px solid #004b82;
+            border-radius: 4px;
+            color: #004b82;
+            font-style: italic;
+            font-size: 0.88rem;
+            text-align: left;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 30px;
+            background: #004b82;
+            color: #fff;
+            padding: 8px 28px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-back:hover { background: #003366; }
+
+        /* Footer igual ao SIGAA */
+        .footer {
+            background: #f9fafb;
+            border-top: 1px solid #e5e9ed;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+            color: #888;
+        }
+        .footer-logo { font-weight: 700; color: #004b82; font-size: 14px; margin-right: 10px; }
+        .footer-sti { font-weight: 700; color: #666; padding-right: 15px; border-right: 1px solid #ccc; margin-right: 15px; }
+
+        @media (max-width: 500px) {
+            .card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo-unb">
+        <div class="green"></div>
+        <div class="blue"></div>
+    </div>
+    <span class="header-title">UnB</span>
+    <span class="header-subtitle">UNIVERSIDADE DE BRASÍLIA</span>
+    <a href="/sigaa/" class="header-back">← Voltar ao SIGAA</a>
+</div>
+
+<div class="alert-bar">
+    ⚠ Tentativa de acesso registrada — autenticação inválida
+</div>
+
+<div class="main">
+    <div class="card">
+
+        <img src="unbreakable.jpg" alt="UnBreakable Project" class="logo-img">
+
+        <div class="card-title">Acesso não autorizado ao SIGAA</div>
+        <div class="divider"></div>
+
+        <div class="card-body">
+            <p>
+                Suas credenciais não foram reconhecidas. Esta tentativa foi registrada.
+            </p>
+            <p>
+                Se você chegou até aqui explorando o sistema — bem-vindo. Este laboratório
+                foi criado por membros do <strong>UnBreakable Project</strong>, grupo de estudos
+                em segurança ofensiva da UnB. Conheça o grupo:
+                <a href="https://www.linkedin.com/company/unbreakable-project/" target="_blank">
+                    linkedin.com/company/unbreakable-project
+                </a>
+            </p>
+        </div>
+
+        <div class="quote">
+            "A melhor defesa é entender como o ataque funciona."
+        </div>
+
+        <a href="/sigaa/" class="btn-back">← Tentar novamente</a>
+
+    </div>
+</div>
+
+<div class="footer">
+    <span class="footer-logo">UnB</span>
+    <span class="footer-sti">STI</span>
+    <span>Secretaria de Tecnologia da Informação | (61) 123456789 | Copyright © 2006 - 2026 UFRN</span>
+</div>
+
+</body>
+</html>

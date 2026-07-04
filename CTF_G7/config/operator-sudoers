@@ -1,0 +1,1 @@
+operator ALL=(root) NOPASSWD: /usr/local/bin/junior-report

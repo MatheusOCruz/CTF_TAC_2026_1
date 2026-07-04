@@ -1,0 +1,37 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - techslop-internal
+    depends_on:
+      - main
+      - panel
+
+  main:
+    build: ./main
+    networks:
+      - techslop-internal
+
+  panel:
+    build: ./panel
+    networks:
+      - techslop-internal
+
+  ssh:
+    build:
+      context: .
+      dockerfile: ssh/Dockerfile
+    ports:
+      - "2222:22"
+    networks:
+      - techslop-internal
+    volumes:
+      - ./internal-backup:/opt/internal-backup:ro
+
+networks:
+  techslop-internal:
+    driver: bridge

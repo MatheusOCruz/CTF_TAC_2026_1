@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Aprender 4</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="dark-bg">
+    <canvas id="network-bg"></canvas>
+
+    <header class="navbar">
+        <a href="/" class="navbar-brand">
+            <img src="/img/logo.svg" alt="Aprender 4">
+            <span>Aprender 4</span>
+        </a>
+    </header>
+
+    <main class="auth-container">
+        <div class="card auth-card">
+            <div class="auth-logo">
+                <img src="/img/logo.svg" alt="Aprender 4">
+                <h2>Aprender 4</h2>
+            </div>
+
+            <div id="error-msg" class="alert alert-error hidden"></div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" name="username" placeholder="Nome de usuario" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" placeholder="Senha" required autocomplete="new-password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Cadastrar</button>
+            </form>
+
+            <p class="auth-footer">Ja tem conta? <a href="/login.html">Entrar</a></p>
+        </div>
+    </main>
+
+    <script src="/js/auth.js?v=2"></script>
+    <script src="/js/api.js?v=2"></script>
+    <script src="/js/network-bg.js?v=2"></script>
+    <script src="/js/register.js?v=2"></script>
+</body>
+</html>

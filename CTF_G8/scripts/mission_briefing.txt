@@ -1,0 +1,18 @@
+BSAA FIELD BRIEFING - CASTLE DIMITRESCU
+
+Agent,
+
+You entered the castle using Cassandra Dimitrescu's identity. This account is
+not privileged, but it is trusted by the ritual system.
+
+Primary evidence:
+- /home/cassandra/user.txt
+
+Operational leads:
+- Review local patrol notes.
+- Check what Cassandra can run with sudo.
+- The ritual system imports helper modules from /opt/castle.
+
+Noise warning:
+Repeated bad credentials and restricted areas trigger patrol reports, but they
+do not end the mission.

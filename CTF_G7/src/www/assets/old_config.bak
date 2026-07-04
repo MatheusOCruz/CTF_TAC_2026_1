@@ -1,0 +1,9 @@
+[legacy-supervisor]
+version=3.3.1
+bind=127.0.0.1
+port=9001
+rpc_path=/RPC2
+rpc_user=junior
+rpc_password=junior123
+owner=junior.dev
+note=Servico antigo mantido para compatibilidade com automacoes do usuario operator.

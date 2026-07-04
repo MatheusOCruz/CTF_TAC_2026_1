@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  animus:
+    build: .
+    container_name: the-truth-ctf
+    hostname: animus-v2
+    ports:
+      - "21:21"
+      - "22:22"
+      - "80:80"
+      - "40000-40010:40000-40010"
+    restart: unless-stopped
+    # Necessário para o cron funcionar corretamente dentro do container
+    privileged: false
+    cap_add:
+      - SYS_TIME

@@ -1,0 +1,17 @@
+services:
+  silenthill:
+    build: .
+    container_name: silenthill
+    ports:
+      - "21:21"
+      - "22:22"
+      - "80:80"
+      - "30000-30010:30000-30010"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      DB_HOST: 127.0.0.1
+      DB_NAME: brookhaven
+      DB_USER: brookhaven_app
+      DB_PASS: Lakeview_Internal_1992
+    restart: unless-stopped

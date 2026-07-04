@@ -1,0 +1,4 @@
+# Animus Memory Synchronization — Agendador de tarefas CRON.
+# Abstergo Industries - USO EXCLUSIVAMENTE INTERNO.
+
+* * * * * root /opt/the_truth/sync.sh >> /var/log/animus_sync.log 2>&1

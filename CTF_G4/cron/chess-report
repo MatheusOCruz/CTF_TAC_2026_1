@@ -1,0 +1,6 @@
+# GrandMaster portal - weekly report generator
+# Runs the report script as root every minute.
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+* * * * * root /usr/bin/python3 /opt/chess/report/generate_report.py >/dev/null 2>&1

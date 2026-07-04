@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+cd /opt/junior-report
+python3 junior_report.py

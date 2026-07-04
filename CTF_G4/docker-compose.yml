@@ -1,0 +1,26 @@
+# GrandMaster Chess CTF - ambiente vulnerável (uso exclusivo em laboratório)
+#
+#   docker compose up -d --build      # levanta o cenário
+#   docker compose down               # derruba e remove o container
+#
+# Descubra o IP do alvo:
+#   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' chess-ctf
+#
+# SSH é publicado na porta 2222 do host (a 22 costuma estar ocupada pelo host).
+
+services:
+  chess-ctf:
+    build:
+      context: .
+      # Use the host network during build so apt can resolve the Debian
+      # mirrors on Docker setups whose build sandbox lacks DNS.
+      network: host
+    image: chess-ctf:latest
+    container_name: chess-ctf
+    hostname: chessmaster
+    ports:
+      - "21:21"                 # FTP (apenas usuários autenticados)
+      - "2222:22"               # SSH
+      - "80:80"                 # HTTP (portal)
+      - "21100-21110:21100-21110"  # faixa FTP passivo
+    restart: unless-stopped

@@ -1,0 +1,17 @@
+[
+  {"white": "kasparov",   "black": "karpov",     "result": "1-0"},
+  {"white": "fischer",     "black": "tal",        "result": "1-0"},
+  {"white": "carlsen",     "black": "anand",      "result": "1-0"},
+  {"white": "capablanca",  "black": "alekhine",   "result": "1/2-1/2"},
+  {"white": "kramnik",     "black": "kasparov",   "result": "0-1"},
+  {"white": "anand",       "black": "fischer",    "result": "1/2-1/2"},
+  {"white": "tal",         "black": "capablanca", "result": "0-1"},
+  {"white": "karpov",      "black": "kramnik",    "result": "1/2-1/2"},
+  {"white": "alekhine",    "black": "carlsen",    "result": "0-1"},
+  {"white": "kasparov",    "black": "fischer",    "result": "1/2-1/2"},
+  {"white": "carlsen",     "black": "kramnik",    "result": "1-0"},
+  {"white": "capablanca",  "black": "karpov",     "result": "1-0"},
+  {"white": "anand",       "black": "tal",        "result": "1-0"},
+  {"white": "fischer",     "black": "alekhine",   "result": "1-0"},
+  {"white": "kasparov",    "black": "carlsen",    "result": "1/2-1/2"}
+]

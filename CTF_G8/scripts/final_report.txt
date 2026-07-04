@@ -1,0 +1,8 @@
+BSAA FINAL REPORT
+
+Root control of Castle Dimitrescu infrastructure confirmed.
+The Lady's administrative boundary has been breached and the ritual system is no
+longer trustworthy.
+
+Primary evidence:
+- /root/root.txt

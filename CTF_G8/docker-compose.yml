@@ -1,0 +1,17 @@
+services:
+  castle-dimitrescu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: castle_dimitrescu
+    hostname: castle-dimitrescu
+    ports:
+      - "8080:80"    # Web - Apache
+      - "2222:22"    # SSH
+    restart: unless-stopped
+    networks:
+      - castle_network
+
+networks:
+  castle_network:
+    driver: bridge

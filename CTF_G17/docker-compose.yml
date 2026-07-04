@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: evilcorp_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: r00tR3cord!
+      MYSQL_DATABASE: evilcorp_wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: Ev1lC0rp2024!
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      evil_net:
+        ipv4_address: 172.20.0.10
+
+  web:
+    image: pandadub/evilcorp-ctf:1.0
+    container_name: evilcorp_web
+    hostname: evilcorp
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: wpuser
+      DB_PASSWORD: Ev1lC0rp2024!
+      DB_NAME: evilcorp_wordpress
+    networks:
+      evil_net:
+        ipv4_address: 172.20.0.20
+
+volumes:
+  db_data:
+
+networks:
+  evil_net:
+    name: evil_net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24

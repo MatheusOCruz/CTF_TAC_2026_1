@@ -1,0 +1,4 @@
+# CTF - configuracao deliberadamente vulneravel a CVE-2019-14287.
+# james pode executar o Vim como qualquer usuario, exceto root.
+# No Sudo 1.8.27, o UID especial -1 contorna a exclusao !root.
+james ALL=(ALL,!root) NOPASSWD: /usr/bin/vim

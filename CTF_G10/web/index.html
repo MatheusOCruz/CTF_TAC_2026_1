@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABSTERGO INDUSTRIES — ANIMUS v1.28</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #080c10;
+            color: #c8a951;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid #c8a95133;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 1px solid #c8a95133;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-img {
+            max-width: 150px;
+            margin-bottom: 1.5rem;
+            /* Um leve filtro de opacidade para combinar melhor com o terminal, opcional */
+            opacity: 0.85; 
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #e8c96a;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            color: #c8a95188;
+            letter-spacing: 2px;
+            margin-top: 0.4rem;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #4a7c59;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #c8a95122;
+            padding-bottom: 0.5rem;
+        }
+
+        .blink {
+            animation: blink 1.2s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 0.7rem;
+            color: #c8a95166;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .body-text {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #b09040;
+        }
+
+        .warning {
+            border: 1px solid #8b3a3a55;
+            background: #1a080844;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: #c06060;
+        }
+
+        .quote {
+            text-align: center;
+            color: #c8a95188;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #c8a95122;
+            letter-spacing: 1px;
+        }
+
+        .dna-bar {
+            text-align: center;
+            font-size: 0.6rem;
+            color: #c8a95133;
+            letter-spacing: 1px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Imagem da Abstergo inserida aqui -->
+            <img src="abstergo-logo.webp" alt="Abstergo Logo" class="logo-img">
+            
+            <h1>ANIMUS v1.28</h1>
+            <div class="subtitle">SISTEMA DE ANÁLISE DE MEMÓRIA GENÉTICA</div>
+        </div>
+
+        <div class="status-bar">
+            <span>● SISTEMA ONLINE</span>
+            <span class="blink">■ SINCRONIZANDO MEMÓRIA GENÉTICA...</span>
+            <span>SUJEITO: DESCONHECIDO</span>
+        </div>
+
+        <div class="dna-bar">ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG</div>
+
+        <div class="section">
+            <div class="section-title">// STATUS DO SISTEMA</div>
+            <p class="body-text">
+                O Animus v1.28 está operacional. As memórias genéticas do Sujeito foram carregadas
+                com sucesso nos servidores da Abstergo Industries. A análise está em andamento.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">// SERVIÇOS ATIVOS</div>
+            <p class="body-text">
+                > Interface de Memória Genética . . . . . ATIVO<br>
+                > Protocolo de Sincronização . . . . . . ATIVO<br>
+                > Sistema de Arquivos Legado  . . . . . . ATIVO<br>
+                > Firewall Externo  . . . . . . . . . . . ATIVO<br>
+                > Portal do Sujeito  . . . . . . . . . . RESTRITO
+            </p>
+        </div>
+
+        <div class="warning">
+            ⚠ AVISO DE SEGURANÇA: Este sistema é propriedade da Abstergo Industries.
+            O acesso não autorizado é monitorado e resultará em ação legal imediata.
+            Todos os acessos são registrados e rastreados.
+        </div>
+
+        <div class="quote">
+            "Nós mudamos o mundo, todos os dias."<br>
+            <span style="font-size:0.6rem; color:#c8a95144;">ABSTERGO INDUSTRIES S.A.</span>
+        </div>
+    </div>
+
+    <!-- TODO Equipe de TI: remover acesso ao sistema legado antes de mover para producao. Verifique os diretórios e remova-os sem deixar vestigios. -->
+</body>
+</html>

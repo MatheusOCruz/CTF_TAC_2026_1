@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /backup/
+Disallow: /detic/admin/
+Disallow: /aprender/admin/
+
+# TODO: desabilitar listagem de diretório no Apache - ticket #UnB-4821

@@ -1,0 +1,228 @@
+:root {
+    --void: #0a0806;
+    --panel: #14100b;
+    --panel-2: #0d0a07;
+    --line: #3a2a18;
+    --scan: #ff9d2e;
+    --scan-dim: #b35a12;
+    --surplus: #ffd23f;
+    --active: #2fe3e3;
+    --scrap: #ff3b3b;
+    --ash: #9a8676;
+    --bone: #f0e3d4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.stage {
+    background-color: var(--void);
+    color: var(--bone);
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+
+    .hero {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .hero h1 {
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: clamp(2.6rem, 7.5vw, 5.4rem);
+        line-height: .92;
+        letter-spacing: -.01em;
+        margin-bottom: 32px;
+    }
+
+    .hero h1 .y {
+        color: var(--surplus);
+    }
+
+    .hero h1 .g {
+        color: var(--scan);
+        text-shadow: 0 0 24px rgba(255, 157, 46, .4);
+    }
+
+    img {
+        display: block;
+        width: 260px;
+        height: auto;
+        max-width: 100%;
+        margin: 0 0 28px;
+        border-radius: 4px;
+    }
+
+    .loot-field {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 500px;
+
+        input {
+            width: 100%;
+            background-color: #000;
+            border: 1px solid var(--line);
+            color: var(--scan);
+            font-family: "Space Mono", monospace;
+            font-size: .92rem;
+            letter-spacing: .06em;
+            padding: 13px 14px;
+            border-radius: 2px;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        input::placeholder {
+            color: #5a4836
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--scan);
+            box-shadow: 0 0 0 1px var(--scan), 0 0 18px rgba(255, 157, 46, .25);
+        }
+
+        .btn {
+            width: 100%;
+            margin-top: 6px;
+            cursor: pointer;
+            font-family: "Chakra Petch", sans-serif;
+            font-weight: 700;
+            font-size: .82rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: #1a0e02;
+            background: var(--scan);
+            border: none;
+            padding: 14px;
+            border-radius: 2px;
+            transition: filter .15s, transform .05s;
+            box-shadow: 0 0 22px rgba(255, 157, 46, .28);
+        }
+
+        .btn:hover {
+            filter: brightness(1.1)
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+    }
+
+
+}
+    .modal {
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-weight: 700;
+        margin: auto;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        color: var(--bone);
+        border-radius: 6px;
+        padding: 0;
+        width: min(440px, calc(100% - 48px));
+        box-shadow: 0 30px 80px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 157, 46, .06);
+    }
+
+    .modal::backdrop {
+        background: rgba(7, 5, 3, .72);
+        backdrop-filter: blur(3px);
+    }
+
+    .modal[open] {
+        animation: modalin .2s ease both;
+    }
+
+    @keyframes modalin {
+        from {
+            opacity: 0;
+            transform: translateY(8px) scale(.98)
+        }
+
+        to {
+            opacity: 1;
+            transform: none
+        }
+    }
+
+    .modal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .modal-title {
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 700;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        font-size: .9rem;
+        color: var(--surplus);
+    }
+
+    .modal-x {
+        background: none;
+        border: none;
+        color: var(--ash);
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0 4px;
+    }
+
+    .modal-x:hover {
+        color: var(--scan);
+    }
+
+    .modal-body {
+        padding: 22px 20px;
+    }
+
+    .modal-msg {
+        font-size: .86rem;
+        color: var(--bone);
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .modal-ok {
+        width: 100%;
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 700;
+        font-size: .78rem;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: #1a0e02;
+        background: var(--scan);
+        border: none;
+        padding: 13px;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: filter .15s, transform .05s;
+    }
+
+    .modal-ok:hover {
+        filter: brightness(1.1);
+    }
+
+    .modal-ok:active {
+        transform: translateY(1px);
+    }
+
+    .modal-x:focus-visible,
+    .modal-ok:focus-visible {
+        outline: 2px solid var(--surplus);
+        outline-offset: 3px;
+    }

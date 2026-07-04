@@ -1,0 +1,580 @@
+﻿/* ================================================
+   CASTELO DIMITRESCU - Folha de Estilos Gótica
+   Sistema de Gestão Interna v1.958
+   ================================================ */
+
+:root {
+    --blood:       #8b0000;
+    --dark-blood:  #5a0000;
+    --gold:        #c9a84c;
+    --dark-gold:   #8b6914;
+    --bg:          #0d0b09;
+    --surface:     #1a1511;
+    --border:      #3d2b1a;
+    --text:        #e8d5b0;
+    --muted:       #9a8570;
+    --danger:      #cc2200;
+    --success:     #4a7c3f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+/* ── Layout ──────────────────────────────────── */
+.castle-bg {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    min-height: 100vh;
+    background: linear-gradient(180deg, #120e0a 0%, #0d0b09 100%);
+}
+
+/* ── Cabeçalho ───────────────────────────────── */
+header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    border-bottom: 2px solid var(--blood);
+    margin-bottom: 2.5rem;
+}
+
+.crest {
+    font-size: 3rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(201, 168, 76, 0.5);
+}
+
+h1 {
+    font-size: 2.4rem;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 0.3rem;
+}
+
+h2 {
+    font-size: 1.1rem;
+    color: var(--muted);
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 0.3rem;
+}
+
+/* ── Separadores ─────────────────────────────── */
+.separator {
+    text-align: center;
+    color: var(--blood);
+    font-size: 1.2rem;
+    margin: 1.8rem 0;
+    letter-spacing: 0.5em;
+}
+
+/* ── Texto de intro ──────────────────────────── */
+.intro {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blood);
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.intro p {
+    margin-bottom: 0.8rem;
+    overflow-wrap: anywhere;
+}
+
+.intro p:last-child { margin-bottom: 0; }
+
+.intro strong { color: var(--gold); }
+.intro em { color: var(--blood); font-style: italic; }
+
+.mission-panel,
+.intel-note {
+    background: #16110d;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--blood);
+    padding: 1.4rem 1.8rem;
+    margin: 1.5rem 0;
+}
+
+.mission-list,
+.detection-list {
+    list-style: none;
+    padding: 0;
+}
+
+.mission-list li,
+.detection-list li {
+    padding: 0.45rem 0;
+    border-bottom: 1px solid #2a1f14;
+    color: var(--text);
+    overflow-wrap: anywhere;
+}
+
+.mission-list li:last-child,
+.detection-list li:last-child {
+    border-bottom: 0;
+}
+
+.mission-list li::before,
+.detection-list li::before {
+    content: "▸";
+    color: var(--gold);
+    margin-right: 0.6rem;
+}
+
+.intel-note p {
+    margin-bottom: 0.8rem;
+    overflow-wrap: anywhere;
+}
+
+.intel-note p:last-child {
+    margin-bottom: 0;
+}
+
+/* ── Imagem principal do castelo ─────────────── */
+.castle-hero {
+    border: 1px solid var(--border);
+    border-bottom: 3px solid var(--blood);
+    background: #0a0806;
+    margin: 0 0 1rem;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+}
+
+.castle-hero img {
+    width: 100%;
+    height: 300px;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    filter: sepia(0.15) contrast(1.08) brightness(0.78);
+}
+
+.castle-hero figcaption {
+    padding: 0.7rem 1rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-align: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+}
+
+/* ── Navegação ───────────────────────────────── */
+.main-nav {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: 100%;
+    padding: 0.8rem 1.8rem;
+    background: var(--surface);
+    border: 1px solid var(--blood);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background: var(--blood);
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
+}
+
+.nav-btn .icon { font-size: 1.2rem; }
+
+.nav-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--border);
+}
+
+.nav-btn.disabled:hover {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--text);
+    box-shadow: none;
+}
+
+/* ── Caixa de aviso ──────────────────────────── */
+.warning-box {
+    background: #1f0a0a;
+    border: 1px solid var(--blood);
+    color: var(--danger);
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.warning-box p {
+    margin-bottom: 0.3rem;
+    overflow-wrap: anywhere;
+}
+
+/* ── Formulários (login) ─────────────────────── */
+.form-container {
+    max-width: 420px;
+    margin: 2rem auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.3rem;
+}
+
+label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="search"] {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    background: #0d0b09;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--blood);
+}
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--blood);
+    border: 1px solid var(--dark-blood);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: var(--dark-blood);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+    color: var(--gold);
+}
+
+/* ── Alertas ─────────────────────────────────── */
+.alert {
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+}
+
+.alert-error {
+    background: #200a0a;
+    border-left: 3px solid var(--danger);
+    color: #ff6666;
+}
+
+.alert-warning {
+    background: #241707;
+    border-left: 3px solid var(--gold);
+    color: #ffd37a;
+}
+
+.alert-success {
+    background: #0a1a0a;
+    border-left: 3px solid var(--success);
+    color: #88cc88;
+}
+
+/* ── Tabelas ─────────────────────────────────── */
+.data-table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+thead th {
+    background: var(--blood);
+    color: var(--gold);
+    padding: 0.7rem 1rem;
+    text-align: left;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border: 1px solid var(--dark-blood);
+}
+
+tbody td {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--surface);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
+tbody tr:hover td { background: #201a12; }
+
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.75rem;
+    border-radius: 2px;
+}
+
+.badge-daughter { background: var(--blood); color: #fcc; }
+.badge-servant  { background: #2a2010; color: var(--gold); border: 1px solid var(--dark-gold); }
+.badge-mistress { background: var(--gold); color: #000; }
+
+/* ── Galeria de Retratos ─────────────────────── */
+.portrait-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+    align-items: stretch;
+}
+
+.portrait-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: border-color 0.3s;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.portrait-card:hover { border-color: var(--gold); }
+
+.portrait-frame {
+    width: 100%;
+    max-width: 240px;
+    height: 320px;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0806;
+    overflow: hidden;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.85);
+}
+
+.portrait-frame img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+    filter: sepia(0.18) contrast(1.08) brightness(0.86);
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.portrait-card:hover .portrait-frame img {
+    transform: scale(1.04);
+    filter: sepia(0.08) contrast(1.14) brightness(0.95);
+}
+
+.portrait-name {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.portrait-title {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    min-height: 2.6rem;
+}
+
+.portrait-desc {
+    color: var(--text);
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+    text-align: left;
+    flex: 1;
+}
+
+@media (max-width: 640px) {
+    .castle-bg {
+        padding: 1.25rem 1rem;
+    }
+
+    header {
+        padding: 2rem 0.25rem 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.55rem;
+        letter-spacing: 0.12em;
+    }
+
+    h2 {
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+    }
+
+    .subtitle {
+        font-size: 0.78rem;
+    }
+
+    .separator {
+        letter-spacing: 0.2em;
+    }
+
+    .intro,
+    .mission-panel,
+    .intel-note,
+    .form-container {
+        padding: 1.2rem;
+    }
+
+    .castle-hero img {
+        height: 190px;
+    }
+
+    .main-nav {
+        gap: 0.8rem;
+    }
+
+    .nav-btn {
+        width: min(100%, 280px);
+        justify-content: center;
+        padding: 0.75rem 1rem;
+    }
+
+    .portrait-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portrait-frame {
+        max-width: 240px;
+        height: 320px;
+    }
+}
+
+/* ── Dashboard info cards ────────────────────── */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--blood);
+    padding: 1rem;
+    text-align: center;
+}
+
+.info-card .number {
+    font-size: 2rem;
+    color: var(--gold);
+    display: block;
+}
+
+.info-card .label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ── Footer ──────────────────────────────────── */
+footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+footer .small {
+    font-size: 0.72rem;
+    margin-top: 0.4rem;
+    opacity: 0.6;
+}
+
+footer p {
+    overflow-wrap: anywhere;
+}
+
+/* ── Utilitários ─────────────────────────────── */
+.text-center { text-align: center; }
+.text-gold   { color: var(--gold); }
+.text-blood  { color: var(--blood); }
+.text-muted  { color: var(--muted); }
+.mt-1        { margin-top: 0.5rem; }
+.mt-2        { margin-top: 1rem; }
+.mb-2        { margin-bottom: 1rem; }
+.small       { font-size: 0.85rem; }
+.mono        { font-family: 'Courier New', monospace; }
+

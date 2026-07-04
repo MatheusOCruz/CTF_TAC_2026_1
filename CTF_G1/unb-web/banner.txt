@@ -1,0 +1,6 @@
+*************************************************************
+*   DETIC/UnB — Servidor de Homologação                     *
+*   Acesso restrito a pessoal autorizado                     *
+*   Ticket de acesso: #UnB-4821                             *
+*   Em caso de problemas: detic@unb.br                      *
+*************************************************************

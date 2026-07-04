@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Página não encontrada | DETIC/UnB</title>
+    <!-- Fontes do Google removidas para o laboratório funcionar offline -->
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter Tight',sans-serif;background:#fbfbfc;color:#414247;min-height:100vh;display:flex;flex-direction:column}
+
+        /* Gov.br top bar */
+        .gov-bar{background:#071d41;padding:8px 0;font-size:13px}
+        .gov-bar .container{max-width:1170px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between}
+        .gov-bar .gov-left{display:flex;align-items:center;gap:8px;color:#fff;font-weight:600;font-size:12px}
+        .gov-bar .gov-left .br-flag{font-size:16px}
+        .gov-bar .gov-links{display:flex;gap:16px}
+        .gov-bar .gov-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:12px;transition:color .2s}
+        .gov-bar .gov-links a:hover{color:#fff}
+
+        /* Header */
+        .header{background:#fbfbfc;padding:0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+        .header .container{max-width:1170px;margin:0 auto;padding:14px 15px;display:flex;align-items:center;justify-content:space-between}
+        .logo-area{display:flex;align-items:center;gap:14px}
+        .unb-logo{display:flex;align-items:center;gap:10px}
+        .unb-emblem{width:44px;height:44px}
+        .unb-emblem svg{width:44px;height:44px}
+        .logo-text{border-left:2px solid #e0e0e0;padding-left:12px}
+        .logo-text h1{font-size:17px;color:#003366;font-weight:700;line-height:1.2;letter-spacing:-.3px}
+        .logo-text p{font-size:12px;color:#5d5d5d;font-weight:400}
+        .header-nav a{color:#003366;text-decoration:none;font-size:15px;font-weight:700;padding:10px 14px;border-radius:4px;transition:all .2s}
+        .header-nav a:hover{background:rgba(0,51,102,.06)}
+
+        /* Hero */
+        .hero{background:#003366;padding:56px 0;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Cdefs%3E%3Cpattern id='c' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(255,255,255,0.05)'/%3E%3Cpath d='M0 20h40M20 0v40' stroke='rgba(255,255,255,0.03)' stroke-width='.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23c)'/%3E%3C/svg%3E");opacity:.6}
+        .hero .container{max-width:1170px;margin:0 auto;padding:0 15px;position:relative;z-index:1;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+        .hero-code{font-size:clamp(72px,12vw,130px);font-weight:900;color:rgba(255,255,255,.12);line-height:1;letter-spacing:-4px;flex-shrink:0;font-family:'Inter Tight',sans-serif}
+        .hero-content h2{color:#fff;font-size:clamp(20px,3.5vw,30px);font-weight:700;margin-bottom:10px;line-height:1.2}
+        .hero-content p{color:rgba(255,255,255,.75);font-size:15px;max-width:480px;line-height:1.7;font-weight:300}
+
+        /* Main */
+        .main{flex:1;padding:56px 0}
+        .main .container{max-width:1170px;margin:0 auto;padding:0 15px;display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start}
+
+        /* Erro card */
+        .error-card{flex:0 0 400px;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:36px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+        .error-icon{display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:#fff3f3;border-radius:50%;font-size:26px;margin-bottom:18px}
+        .error-card h3{color:#003366;font-size:20px;font-weight:700;margin-bottom:8px}
+        .error-card .error-sub{color:#5d5d5d;font-size:13px;margin-bottom:24px;line-height:1.6}
+        .error-card .error-code{font-family:'Courier New',monospace;font-size:11px;background:#f4f5f6;border:1px solid #e0e0e0;padding:10px 14px;border-radius:4px;color:#5d5d5d;margin-bottom:24px}
+        .btn-home{display:block;width:100%;padding:13px;background:#003366;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter Tight',sans-serif;transition:background .2s;text-decoration:none;text-align:center}
+        .btn-home:hover{background:#004a8f}
+        .btn-back{display:block;width:100%;padding:11px;background:#fff;color:#003366;border:1px solid #ccc;border-radius:6px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter Tight',sans-serif;transition:background .2s;text-decoration:none;text-align:center;margin-top:10px}
+        .btn-back:hover{background:#f4f5f6}
+
+        /* Sugestões */
+        .suggestions{flex:1;min-width:260px;padding-top:4px}
+        .suggestions h4{font-size:14px;color:#414247;font-weight:700;margin-bottom:16px}
+        .suggestion-item{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #f0f0f0}
+        .suggestion-item:last-child{border-bottom:none}
+        .sug-icon{width:36px;height:36px;background:#003366;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+        .sug-text h5{color:#003366;font-size:13px;font-weight:700;margin-bottom:3px}
+        .sug-text p{color:#5d5d5d;font-size:12px;line-height:1.5}
+        .sug-text a{color:#003366;text-decoration:none;font-size:12px;font-weight:600}
+        .sug-text a:hover{text-decoration:underline}
+
+        /* Alert box */
+        .alert-box{background:#fff;border:1px solid #e0e0e0;border-left:4px solid #cca61d;padding:12px 16px;border-radius:4px;font-size:12px;color:#5d5d5d;display:flex;align-items:flex-start;gap:10px;margin-top:20px}
+        .alert-box span:first-child{font-size:16px;flex-shrink:0}
+
+        /* Footer */
+        .footer{background:#003366;padding:24px 0;color:#fff;margin-top:auto}
+        .footer .container{max-width:1170px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+        .footer-brand{display:flex;align-items:center;gap:14px}
+        .footer-logo{font-size:20px;font-weight:700;color:#fff;letter-spacing:1px}
+        .footer-sep{width:1px;height:24px;background:rgba(255,255,255,.2)}
+        .footer-info{font-size:11px;color:rgba(255,255,255,.7);line-height:1.4}
+        .footer p{color:rgba(255,255,255,.6);font-size:12px}
+
+        @media(max-width:768px){
+            .hero .container{flex-direction:column;gap:16px}
+            .hero-code{font-size:60px}
+            .main .container{flex-direction:column}
+            .error-card{flex:1;width:100%}
+            .footer .container{flex-direction:column;text-align:center}
+        }
+    </style>
+</head>
+<body>
+
+<!-- Gov.br Bar -->
+<div class="gov-bar">
+    <div class="container">
+        <div class="gov-left">
+            <span class="br-flag">🇧🇷</span>
+            <span>GOVERNO FEDERAL</span>
+        </div>
+        <div class="gov-links">
+            <a href="/">Portal UnB</a>
+            <a href="#">Acessibilidade</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo-area">
+            <div class="unb-logo">
+                <div class="unb-emblem">
+                    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="22" cy="22" r="20" fill="#003366" stroke="#003366" stroke-width="1"/>
+                        <text x="22" y="26" text-anchor="middle" fill="#fff" font-family="Inter Tight,sans-serif" font-size="14" font-weight="700">UnB</text>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>DETIC</h1>
+                    <p>Diretoria de Tecnologia da Informação e Comunicação</p>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <a href="/">← Voltar ao Portal</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="container">
+        <div class="hero-code">404</div>
+        <div class="hero-content">
+            <h2>Página não encontrada</h2>
+            <p>O recurso solicitado não existe neste servidor ou foi movido para outro endereço. Verifique a URL digitada ou use as opções abaixo.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Main -->
+<main class="main">
+    <div class="container">
+
+        <!-- Erro card -->
+        <div class="error-card">
+            <div class="error-icon">⚠️</div>
+            <h3>Recurso não encontrado</h3>
+            <p class="error-sub">A página que você tentou acessar não está disponível. Isso pode ter ocorrido porque o endereço foi digitado incorretamente ou o conteúdo foi removido.</p>
+            <div class="error-code">HTTP 404 — Not Found<br>Servidor: DETIC/UnB Homologação</div>
+            <a href="/" class="btn-home">Ir para o Portal Principal</a>
+            <a href="javascript:history.back()" class="btn-back">← Voltar à página anterior</a>
+            <div class="alert-box">
+                <span>💡</span>
+                <span>Em caso de dúvidas, entre em contato com o suporte DETIC pelo ramal <strong>3107</strong> ou pelo e-mail <strong>detic@unb.br</strong>.</span>
+            </div>
+        </div>
+
+        <!-- Sugestões -->
+        <div class="suggestions">
+            <h4>Você pode estar procurando por:</h4>
+            <div class="suggestion-item">
+                <div class="sug-icon">📚</div>
+                <div class="sug-text">
+                    <h5>Aprender 3</h5>
+                    <p>Ambiente virtual de aprendizagem da UnB</p>
+                    <a href="/aprender/">Acessar o Aprender 3 →</a>
+                </div>
+            </div>
+            <div class="suggestion-item">
+                <div class="sug-icon">🎓</div>
+                <div class="sug-text">
+                    <h5>SIGAA</h5>
+                    <p>Sistema Integrado de Gestão de Atividades Acadêmicas</p>
+                    <a href="/sigaa/">Acessar o SIGAA →</a>
+                </div>
+            </div>
+            <div class="suggestion-item">
+                <div class="sug-icon">🔐</div>
+                <div class="sug-text">
+                    <h5>Área Administrativa DETIC</h5>
+                    <p>Acesso restrito a servidores autorizados</p>
+                    <a href="/detic/login/">Login DETIC →</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-brand">
+            <div class="footer-logo">UnB</div>
+            <div class="footer-sep"></div>
+            <div class="footer-info">DETIC — Diretoria de Tecnologia<br>da Informação e Comunicação</div>
+        </div>
+        <p>© 2024 Universidade de Brasília — Todos os direitos reservados</p>
+    </div>
+</footer>
+
+<script>
+    console.log("%c🐺 UnBreakable", "color: #b52a2a; font-size: 24px; font-weight: bold;");
+    console.log("Esta página não existe — mas você já olhou o código-fonte de todas as que existem?");
+</script>
+
+</body>
+</html>

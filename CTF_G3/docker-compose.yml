@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  ctf:
+    build: .
+    container_name: sysmon-ctf
+    ports:
+      - "21:21" # FTP controle
+      - "2222:22" # SSH
+      - "80:80" # HTTP (Laravel)
+      - "30000-30010:30000-30010" # FTP modo passivo
+    restart: unless-stopped
+    # Necessário para o vsftpd funcionar corretamente
+    cap_add:
+      - NET_ADMIN

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Validando sessão...</title>
+</head>
+
+<body>
+    <p>Validando sessão...</p>
+    <script>
+        (async () => {
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get("token");
+
+            if (!token) {
+                window.location.href = "/";
+                return;
+            }
+
+            try {
+                const res = await fetch("http://academy.repo:3000/api/login-bridge", {
+                    method: "POST",
+                    credentials: "include",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ token }),
+                });
+
+                window.location.href = res.ok ? "/" : "http://repo/login/login.html";
+            } catch (err) {
+                console.error(err);
+                window.location.href = "http://repo/login/login.html";
+            }
+        })();
+    </script>
+</body>
+
+</html>

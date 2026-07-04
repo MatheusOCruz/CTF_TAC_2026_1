@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group 935 | Griffin Station Mainframe</title>
+    <style>
+        :root {
+            --term-green: #33ff33;
+            --term-red: #ff3333;
+            --term-bg: #050505;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--term-bg);
+            color: var(--term-green);
+            font-family: "Courier New", Courier, monospace;
+            height: 100%;
+            overflow: hidden;
+        }
+
+       
+        body::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .terminal-container {
+            align-items: center; 
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            text-align: center; 
+            min-height: 100vh;
+            padding: 40px;
+            text-shadow: 0 0 5px var(--term-green);
+            z-index: 1;
+            position: relative;
+        }
+
+        h1 {
+            color: var(--term-red);
+            text-shadow: 0 0 10px var(--term-red);
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--term-red);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .ascii-art {
+            white-space: pre;
+            font-size: 12px;
+            line-height: 10px;
+            margin-bottom: 20px;
+            color: #88ff88;
+        }
+
+        .system-msg {
+            margin: 10px 0;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+       
+        .login-panel {
+            margin-top: 40px;
+            border: 1px dashed var(--term-green);
+            padding: 20px;
+            width: 400px;
+        }
+
+        input[type="text"], input[type="password"] {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--term-green);
+            color: var(--term-green);
+            font-family: inherit;
+            outline: none;
+            width: 200px;
+            margin-left: 10px;
+        }
+
+        button {
+            background: transparent;
+            color: var(--term-red);
+            border: 1px solid var(--term-red);
+            padding: 5px 15px;
+            font-family: inherit;
+            cursor: pointer;
+            margin-top: 15px;
+            text-shadow: 0 0 5px var(--term-red);
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: var(--term-red);
+            color: black;
+        }
+
+        #login-error {
+            color: var(--term-red);
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="terminal-container">
+        
+        <div class="ascii-art">
+   _____  _____  _    _  _____   ____    ___  ____  _____ 
+  / ____||  __ \| |  | ||  __ \ / __ \  / _ \|___ \| ____|
+ | |  __ | |__) | |  | || |__) | |  | || (_) | __) | |__  
+ | | |_ ||  _  /| |  | ||  ___/| |  | | \__, ||__ <|___ \ 
+ | |__| || | \ \| |__| || |    | |__| |   / / ___) |___) |
+  \_____||_|  \_\\____/ |_|     \____/   /_/ |____/|____/ 
+        </div>
+
+        <h1>[ TERMINAL PÚBLICO - ESTAÇÃO GRIFFIN ]</h1>
+        
+        <div class="system-msg">> Iniciando link de telemetria com Der Riese... [OK]</div>
+        <div class="system-msg">> Verificando estabilidade do Elemento 115... [ESTÁVEL]</div>
+        <div class="system-msg">> Status do Projeto MPD: <span class="blink" style="color: yellow;">AGUARDANDO CALIBRAÇÃO (Faltam 2 Artefatos)</span></div>
+        <div class="system-msg">> Diretiva de Segurança: Todo dado de pesquisa deve ser transferido via FTP central.</div>
+        
+        <div class="login-panel">
+            <p><strong>ACESSO DE EMERGÊNCIA</strong></p>
+            <form id="fake-login" onsubmit="event.preventDefault(); showError();">
+                <p>Usuário: <input type="text" name="user" autocomplete="off"></p>
+                <p>Senha: &nbsp;&nbsp;<input type="password" name="pass"></p>
+                <button type="submit">AUTENTICAR</button>
+            </form>
+            <p id="login-error">> ERRO 403: Painel de Autenticação Remota Desativado.</p>
+        </div>
+
+    </div>
+
+    <script>
+        
+        function showError() {
+            const errorMsg = document.getElementById('login-error');
+            errorMsg.style.display = 'block';
+            
+           
+            setTimeout(() => { errorMsg.style.display = 'none'; }, 200);
+            setTimeout(() => { errorMsg.style.display = 'block'; }, 300);
+            setTimeout(() => { errorMsg.style.display = 'none'; }, 400);
+            setTimeout(() => { errorMsg.style.display = 'block'; }, 600);
+        }
+    </script>
+</body>
+</html>

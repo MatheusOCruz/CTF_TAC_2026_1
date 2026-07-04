@@ -1,0 +1,25 @@
+=====================================================
+  SEQUENCIA 16 — ARQUIVO DE VERIFICACAO DO ANIMUS
+  Abstergo Industries — Acesso Classificado
+=====================================================
+
+[REGISTRO RECUPERADO — MEMORIA CORROMPIDA]
+[ANOMALIA DETECTADA: ARQUIVO MODIFICADO PELO SUJEITO 16]
+
+Hash de verificacao de identidade detectado nos registros
+de memoria genetica:
+
+  HASH_PLACEHOLDER
+
+[NOTA: Este hash foi inserido de forma anomala
+nos fragmentos de memoria do Sujeito 16 junto a 
+referencias a um portador especifico. Tentativa de 
+purga falhou.]
+
+Consulte fragments.txt para identificacao do portador.
+
+=====================================================
+  "Eles estao por toda parte. Voce precisa ver isso.
+   A peca que falta esta na memoria."
+                                        — Sujeito 16
+=====================================================

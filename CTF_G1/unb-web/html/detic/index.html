@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DETIC — Diretoria de Tecnologia da Informação e Comunicação | UnB</title>
+    <meta name="description" content="Portal da Diretoria de Tecnologia da Informação e Comunicação da Universidade de Brasília">
+    <!-- Fontes do Google removidas para o laboratório funcionar offline -->
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter Tight',sans-serif;background:#fbfbfc;color:#414247;min-height:100vh;display:flex;flex-direction:column}
+
+        /* Gov.br top bar */
+        .gov-bar{background:#071d41;padding:8px 0;font-size:13px}
+        .gov-bar .container{max-width:1170px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between}
+        .gov-bar .gov-left{display:flex;align-items:center;gap:8px;color:#fff;font-weight:600;font-size:12px}
+        .gov-bar .gov-left .br-flag{font-size:16px}
+        .gov-bar .gov-links{display:flex;gap:16px}
+        .gov-bar .gov-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:12px;transition:color .2s}
+        .gov-bar .gov-links a:hover{color:#fff}
+
+        /* Header */
+        .header{background:#fbfbfc;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+        .header .container{max-width:1170px;margin:0 auto;padding:14px 15px;display:flex;align-items:center;justify-content:space-between}
+        .logo-area{display:flex;align-items:center;gap:14px}
+        .logo-area .unb-logo{display:flex;align-items:center;gap:10px}
+        .logo-area .unb-emblem{width:44px;height:44px;position:relative}
+        .logo-area .unb-emblem svg{width:44px;height:44px}
+        .logo-text{border-left:2px solid #e0e0e0;padding-left:12px}
+        .logo-text h1{font-size:17px;color:#003366;font-weight:700;line-height:1.2;letter-spacing:-.3px}
+        .logo-text p{font-size:12px;color:#5d5d5d;font-weight:400}
+
+        .header-nav{display:flex;align-items:center;gap:6px}
+        .header-nav a{color:#003366;text-decoration:none;font-size:15px;font-weight:700;padding:10px 14px;border-radius:4px;transition:all .2s;position:relative}
+        .header-nav a:hover{background:rgba(0,51,102,.06)}
+        .header-nav a.active{color:#003366}
+        .header-nav a.active::after{content:'';position:absolute;bottom:2px;left:14px;right:14px;height:2px;background:#003366;border-radius:1px}
+        .header-nav .search-toggle{background:none;border:none;color:#003366;font-size:18px;cursor:pointer;padding:8px;border-radius:4px;transition:background .2s}
+        .header-nav .search-toggle:hover{background:rgba(0,51,102,.06)}
+
+        /* Hero / Banner */
+        .hero{background:#003366;padding:60px 0;position:relative;overflow:hidden;min-height:260px;display:flex;align-items:center}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Cdefs%3E%3Cpattern id='c' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(255,255,255,0.05)'/%3E%3Cpath d='M0 20h40M20 0v40' stroke='rgba(255,255,255,0.03)' stroke-width='.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23c)'/%3E%3C/svg%3E");opacity:.6}
+        .hero .container{max-width:1170px;margin:0 auto;padding:0 15px;position:relative;z-index:1}
+        .hero h2{color:#fff;font-size:32px;font-weight:700;margin-bottom:14px;line-height:1.2}
+        .hero p{color:rgba(255,255,255,.8);font-size:16px;max-width:550px;line-height:1.7;font-weight:300}
+        .hero-dots{display:flex;gap:8px;margin-top:28px}
+        .hero-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:background .2s}
+        .hero-dots span.active{background:#fff}
+
+        /* Role Cards */
+        .role-cards{padding:0 0 40px;margin-top:-30px;position:relative;z-index:2}
+        .role-cards .container{max-width:1170px;margin:0 auto;padding:0 15px}
+        .role-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .role-card{border-radius:12px;padding:28px 24px;color:#fff;text-decoration:none;display:block;transition:transform .3s,box-shadow .3s;cursor:pointer}
+        .role-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.2)}
+        .role-card.servidor{background:linear-gradient(135deg,#295a9f,#16396b)}
+        .role-card.estudante{background:linear-gradient(135deg,#406a30,#1e3514)}
+        .role-card.agente{background:linear-gradient(135deg,#cca61d,#b08806)}
+        .role-card h3{font-size:20px;font-weight:700;margin-bottom:6px}
+        .role-card p{font-size:13px;opacity:.85;line-height:1.5;font-weight:300}
+
+        /* Services */
+        .services{padding:50px 0}
+        .services .container{max-width:1170px;margin:0 auto;padding:0 15px}
+        .section-title{font-size:25px;color:#414247;font-weight:700;margin-bottom:30px}
+        .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+        .service-item{display:flex;align-items:flex-start;gap:18px;padding:20px;border-radius:8px;transition:background .2s}
+        .service-item:hover{background:rgba(0,51,102,.03)}
+        .service-icon{width:56px;height:56px;background:#003366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .service-icon svg{width:26px;height:26px;fill:#fff}
+        .service-item h4{color:#003366;font-size:16px;font-weight:700;margin-bottom:4px}
+        .service-item p{color:#5d5d5d;font-size:14px;line-height:1.6;font-weight:400}
+
+        /* Login Section */
+        .login-section{background:#f4f5f6;padding:50px 0;border-top:1px solid #e8e8e8}
+        .login-section .container{max-width:1170px;margin:0 auto;padding:0 15px;display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap}
+        .login-info{flex:1;min-width:280px}
+        .login-info h3{font-size:25px;color:#414247;font-weight:700;margin-bottom:16px}
+        .login-info p{color:#5d5d5d;font-size:14px;line-height:1.7;margin-bottom:14px}
+        .login-info .alert-box{background:#fff;border:1px solid #e0e0e0;border-left:4px solid #cca61d;padding:14px 18px;border-radius:4px;font-size:13px;color:#5d5d5d;display:flex;align-items:flex-start;gap:10px}
+        .login-info .alert-box span:first-child{font-size:18px}
+        .login-panel{flex:0 0 400px;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:36px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+        .login-panel h4{text-align:center;color:#003366;font-size:18px;font-weight:700;margin-bottom:4px}
+        .login-panel .login-icon{text-align:center;margin-bottom:12px}
+        .login-panel .login-icon .icon-circle{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;background:#003366;border-radius:50%;font-size:22px}
+        .login-panel .login-sub{text-align:center;color:#5d5d5d;font-size:13px;margin-bottom:24px}
+        .field{margin-bottom:16px}
+        .field label{display:block;color:#414247;font-size:13px;font-weight:600;margin-bottom:6px}
+        .field input{width:100%;padding:11px 14px;background:#fff;border:1px solid #ccc;border-radius:6px;color:#333;font-size:14px;font-family:'Inter Tight',sans-serif;transition:border-color .2s,box-shadow .2s}
+        .field input:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,102,.08)}
+        .btn-login{width:100%;padding:12px;background:#003366;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter Tight',sans-serif;transition:background .2s}
+        .btn-login:hover{background:#004a8f}
+        .login-warn{margin-top:16px;background:#fef3f3;border:1px solid #f0d0d0;color:#b52a2a;padding:10px 14px;border-radius:6px;font-size:12px;text-align:center}
+
+        /* Footer - Upper */
+        .footer-upper{background:#f4f5f6;border-top:1px solid #e0e0e0;padding:40px 0}
+        .footer-upper .container{max-width:1170px;margin:0 auto;padding:0 15px;display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+        .footer-col h4{color:#003366;font-size:15px;font-weight:700;margin-bottom:14px}
+        .footer-col a,.footer-col p{display:block;color:#5d5d5d;font-size:13px;text-decoration:none;line-height:2;transition:color .2s}
+        .footer-col a:hover{color:#003366}
+
+        /* Footer - Lower */
+        .footer-lower{background:#003366;padding:36px 0;color:#fff}
+        .footer-lower .container{max-width:1170px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+        .footer-brand{display:flex;align-items:center;gap:20px}
+        .footer-brand .footer-logo{width:120px;height:40px;display:flex;align-items:center;font-size:24px;font-weight:700;color:#fff;letter-spacing:1px}
+        .footer-brand .sep{width:1px;height:30px;background:rgba(255,255,255,.2)}
+        .footer-brand .acesso-info{font-size:11px;color:rgba(255,255,255,.7);line-height:1.4}
+        .footer-social{display:flex;gap:10px}
+        .footer-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid rgba(255,255,255,.3);border-radius:6px;color:#fff;text-decoration:none;font-size:16px;transition:all .2s}
+        .footer-social a:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6)}
+        .footer-contact{text-align:right}
+        .footer-contact p{color:rgba(255,255,255,.8);font-size:13px;line-height:1.8}
+
+        /* Copyright */
+        .copyright{background:#f4f5f6;padding:14px 0;text-align:center}
+        .copyright p{color:#5d5d5d;font-size:12px}
+
+        /* Responsive */
+        @media(max-width:900px){
+            .header .container{flex-wrap:wrap;gap:10px}
+            .header-nav{width:100%;overflow-x:auto;justify-content:flex-start}
+            .header-nav a{font-size:13px;padding:8px 10px;white-space:nowrap}
+            .role-cards-grid{grid-template-columns:1fr}
+            .services-grid{grid-template-columns:1fr}
+            .login-section .container{flex-direction:column}
+            .login-panel{flex:1;width:100%}
+            .footer-upper .container{grid-template-columns:repeat(2,1fr)}
+            .footer-lower .container{flex-direction:column;text-align:center}
+            .footer-contact{text-align:center}
+        }
+        @media(max-width:600px){
+            .hero h2{font-size:24px}
+            .footer-upper .container{grid-template-columns:1fr}
+            .gov-bar .container{flex-direction:column;gap:6px;align-items:flex-start}
+        }
+    </style>
+</head>
+<body>
+
+<!-- Gov.br Bar -->
+<div class="gov-bar">
+    <div class="container">
+        <div class="gov-left">
+            <span class="br-flag">🇧🇷</span>
+            <span>GOVERNO FEDERAL</span>
+        </div>
+        <div class="gov-links">
+            <a href="/">Portal UnB</a>
+            <a href="#">Órgãos do Governo</a>
+            <a href="#">Acessibilidade</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo-area">
+            <div class="unb-logo">
+                <div class="unb-emblem">
+                    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="22" cy="22" r="20" fill="#003366" stroke="#003366" stroke-width="1"/>
+                        <text x="22" y="26" text-anchor="middle" fill="#fff" font-family="Inter Tight,sans-serif" font-size="14" font-weight="700">UnB</text>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>DETIC</h1>
+                    <p>Diretoria de Tecnologia da Informação e Comunicação</p>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <a href="/detic/" class="active">Início</a>
+            <a href="#">Serviços</a>
+            <a href="#">Infraestrutura</a>
+            <a href="#">Chamados</a>
+            <a href="#">Contato</a>
+            <button class="search-toggle" aria-label="Buscar">🔍</button>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Banner -->
+<section class="hero">
+    <div class="container">
+        <h2>Tecnologia a serviço<br>da Universidade</h2>
+        <p>A DETIC é responsável por planejar, coordenar e executar as políticas de tecnologia da informação e comunicação da Universidade de Brasília.</p>
+        <div class="hero-dots">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</section>
+
+<!-- Role Cards -->
+<section class="role-cards">
+    <div class="container">
+        <div class="role-cards-grid">
+            <a class="role-card servidor" href="#">
+                <h3>Servidor</h3>
+                <p>Acesse serviços de TI, chamados e suporte técnico para servidores da UnB.</p>
+            </a>
+            <a class="role-card estudante" href="#">
+                <h3>Estudante</h3>
+                <p>Acesse a rede Wi-Fi, laboratórios de informática e serviços acadêmicos.</p>
+            </a>
+            <a class="role-card agente" href="#">
+                <h3>Agente de Relacionamento</h3>
+                <p>Canal direto para unidades acadêmicas e centros de custo.</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="services">
+    <div class="container">
+        <h2 class="section-title">Serviços</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M4 6h16v10H4V6zm2 2v6h12V8H6zm-2 10h16v2H4v-2z"/></svg>
+                </div>
+                <div>
+                    <h4>Sistemas Institucionais</h4>
+                    <p>Manutenção e suporte dos sistemas acadêmicos e administrativos da universidade.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.67-3.13 9.06-7 10.2-3.87-1.14-7-5.53-7-10.2V6.3l7-3.12zM11 7v2h2V7h-2zm0 4v6h2v-6h-2z"/></svg>
+                </div>
+                <div>
+                    <h4>Segurança da Informação</h4>
+                    <p>Políticas de segurança, monitoramento de ameaças e resposta a incidentes cibernéticos.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.237 4.237 0 00-6 0zm-4-4l2 2a7.074 7.074 0 0110 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                </div>
+                <div>
+                    <h4>Rede e Conectividade</h4>
+                    <p>Gerenciamento da infraestrutura de rede, Wi-Fi institucional e links de dados do campus.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19.35 10.04A7.49 7.49 0 0012 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 000 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4s1.79-4 4-4h.71C7.37 7.69 9.48 6 12 6a5.5 5.5 0 015.5 4.5l.29.5H19c1.66 0 3 1.34 3 3s-1.34 3-3 3z"/></svg>
+                </div>
+                <div>
+                    <h4>Cloud e Servidores</h4>
+                    <p>Administração do ambiente de virtualização, servidores e serviços em nuvem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Acesso -->
+<section class="login-section">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px">
+        <div>
+            <h3 style="font-size:22px;color:#414247;font-weight:700;margin-bottom:6px">Acesso Administrativo</h3>
+            <p style="color:#5d5d5d;font-size:14px">Área restrita para servidores autorizados da DETIC. Acesse com suas credenciais SIAPE.</p>
+        </div>
+        <a href="/detic/login/" style="display:inline-flex;align-items:center;gap:8px;background:#003366;color:#fff;text-decoration:none;padding:14px 28px;border-radius:6px;font-size:15px;font-weight:600;transition:background .2s" onmouseover="this.style.background='#004a8f'" onmouseout="this.style.background='#003366'">🔐 Acessar Painel</a>
+    </div>
+</section>
+
+<!-- Footer Upper -->
+<div class="footer-upper">
+    <div class="container">
+        <div class="footer-col">
+            <h4>Institucional</h4>
+            <a href="#">Sobre a DETIC</a>
+            <a href="#">Estrutura Organizacional</a>
+            <a href="#">Normas e Regulamentos</a>
+            <a href="#">Plano Diretor de TI</a>
+        </div>
+        <div class="footer-col">
+            <h4>Serviços</h4>
+            <a href="#">Central de Chamados</a>
+            <a href="#">Catálogo de Serviços</a>
+            <a href="#">Status dos Sistemas</a>
+            <a href="#">VPN Institucional</a>
+        </div>
+        <div class="footer-col">
+            <h4>Sistemas</h4>
+            <a href="/aprender/">Aprender UnB</a>
+            <a href="/sigaa/">SIGAA</a>
+            <a href="#">SEI</a>
+            <a href="#">SIPAC</a>
+        </div>
+        <div class="footer-col">
+            <h4>Contato</h4>
+            <p>📧 detic@unb.br</p>
+            <p>📞 (61) 3107-0340</p>
+            <p>🕐 Seg–Sex, 8h às 18h</p>
+            <p>📍 Campus Darcy Ribeiro</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Lower -->
+<footer class="footer-lower">
+    <div class="container">
+        <div class="footer-brand">
+            <div class="footer-logo">UnB</div>
+            <div class="sep"></div>
+            <div class="acesso-info">Universidade de Brasília<br>Secretaria de Tecnologia da Informação</div>
+        </div>
+        <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="YouTube">▶</a>
+            <a href="#" aria-label="Instagram">📷</a>
+        </div>
+        <div class="footer-contact">
+            <p>Campus Universitário Darcy Ribeiro<br>Brasília — DF, CEP 70910-900</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Copyright -->
+<div class="copyright">
+    <p>© 2024 Universidade de Brasília — Todos os direitos reservados</p>
+</div>
+
+</body>
+</html>

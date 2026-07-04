@@ -1,0 +1,46 @@
+# DesAprender3 — Ambiente CTF (Trabalho Final de Segurança Ofensiva / CIC0087 - UnB)
+# Sobe o AVA vulnerável (web) + banco de dados (db).
+#   web -> http://localhost:8080
+# Uso:  docker compose up --build -d   |   docker compose down -v
+services:
+  db:
+    image: mariadb:11
+    container_name: desaprender3-db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: root_desaprender_2026
+      MARIADB_DATABASE: desaprender3
+      MARIADB_USER: desaprender
+      MARIADB_PASSWORD: S3nh@_DB_2026
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    networks: [ctfnet]
+
+  web:
+    build: ./web
+    container_name: desaprender3-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_USER: desaprender
+      DB_PASS: S3nh@_DB_2026
+      DB_NAME: desaprender3
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [ctfnet]
+
+volumes:
+  dbdata:
+
+networks:
+  ctfnet:
+    driver: bridge

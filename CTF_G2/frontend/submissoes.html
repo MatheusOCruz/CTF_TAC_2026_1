@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum - Aprender 4</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="/dashboard.html" class="navbar-brand">
+            <img src="/img/logo.svg" alt="Aprender 4">
+            <span>Aprender 4</span>
+        </a>
+        <nav class="navbar-links">
+            <a href="/dashboard.html">Inicio</a>
+            <a href="/submissoes.html" class="active">Exercicio</a>
+            <a href="/admin.html" id="admin-link" class="hidden">Admin</a>
+            <span id="user-greeting"></span>
+            <button onclick="Auth.logout()" class="btn btn-outline btn-sm">Sair</button>
+        </nav>
+    </header>
+
+    <div id="approval-warning" class="alert alert-warning hidden" style="margin:16px 24px 0">
+        Sua conta ainda nao foi aprovada. Aguarde a aprovacao de um administrador para enviar codigo.
+    </div>
+
+    <main class="exercise-layout">
+        <div class="exercise-problem">
+            <div class="problem-header">
+                <span class="problem-difficulty badge-easy">Facil</span>
+                <h1>Two Sum</h1>
+            </div>
+            <div class="problem-body">
+                <p>Dada uma lista de inteiros <code>nums</code> e um inteiro <code>target</code>, retorne os <strong>indices</strong> dos dois numeros cuja soma seja igual a <code>target</code>.</p>
+
+                <p>Voce pode assumir que cada entrada tera <strong>exatamente uma solucao</strong>, e voce nao pode usar o mesmo elemento duas vezes.</p>
+
+                <p>Voce pode retornar a resposta em qualquer ordem.</p>
+
+                <h3>Exemplo 1:</h3>
+                <div class="example-box">
+                    <p><strong>Entrada:</strong> nums = [2, 7, 11, 15], target = 9</p>
+                    <p><strong>Saida:</strong> [0, 1]</p>
+                    <p><strong>Explicacao:</strong> nums[0] + nums[1] = 2 + 7 = 9, entao retornamos [0, 1].</p>
+                </div>
+
+                <h3>Exemplo 2:</h3>
+                <div class="example-box">
+                    <p><strong>Entrada:</strong> nums = [3, 2, 4], target = 6</p>
+                    <p><strong>Saida:</strong> [1, 2]</p>
+                </div>
+
+                <h3>Exemplo 3:</h3>
+                <div class="example-box">
+                    <p><strong>Entrada:</strong> nums = [3, 3], target = 6</p>
+                    <p><strong>Saida:</strong> [0, 1]</p>
+                </div>
+
+                <h3>Restricoes:</h3>
+                <ul>
+                    <li>2 &le; nums.length &le; 10<sup>4</sup></li>
+                    <li>-10<sup>9</sup> &le; nums[i] &le; 10<sup>9</sup></li>
+                    <li>-10<sup>9</sup> &le; target &le; 10<sup>9</sup></li>
+                    <li>Apenas <strong>uma resposta valida</strong> existe.</li>
+                </ul>
+
+                <h3>Assinatura da funcao:</h3>
+                <div class="example-box">
+                    <code>def two_sum(nums: list[int], target: int) -> list[int]:</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-editor">
+            <div class="editor-header">
+                <span class="editor-lang-badge">Python</span>
+                <button type="button" class="btn btn-primary btn-sm" id="submit-btn">Enviar</button>
+            </div>
+            <form id="submission-form">
+                <textarea id="source-code" class="code-editor" spellcheck="false">def two_sum(nums: list[int], target: int) -> list[int]:
+    # Escreva sua solucao aqui
+    pass
+
+
+# Nao modifique abaixo desta linha
+if __name__ == "__main__":
+    print(two_sum([2, 7, 11, 15], 9))
+    print(two_sum([3, 2, 4], 6))
+    print(two_sum([3, 3], 6))</textarea>
+            </form>
+
+            <div class="exercise-bottom">
+                <div id="output-section" class="hidden">
+                    <div class="result-header">
+                        <span class="output-label">Resultado:</span>
+                        <span id="result-status" class="badge"></span>
+                    </div>
+                    <div class="output-panel" id="output-content"></div>
+                </div>
+
+                <div class="test-cases-section">
+                    <h3>Casos de Teste</h3>
+                    <div id="test-cases-list">
+                        <div class="test-case">
+                            <span class="test-case-label">Caso 1</span>
+                            <code>two_sum([2, 7, 11, 15], 9) &rarr; [0, 1]</code>
+                            <span class="test-case-status" id="tc-1">-</span>
+                        </div>
+                        <div class="test-case">
+                            <span class="test-case-label">Caso 2</span>
+                            <code>two_sum([3, 2, 4], 6) &rarr; [1, 2]</code>
+                            <span class="test-case-status" id="tc-2">-</span>
+                        </div>
+                        <div class="test-case">
+                            <span class="test-case-label">Caso 3</span>
+                            <code>two_sum([3, 3], 6) &rarr; [0, 1]</code>
+                            <span class="test-case-status" id="tc-3">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/auth.js?v=2"></script>
+    <script src="/js/api.js?v=2"></script>
+    <script src="/js/submissions.js?v=2"></script>
+</body>
+</html>

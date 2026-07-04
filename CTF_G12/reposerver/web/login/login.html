@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMIBOT AUTHENTICATION</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+
+</head>
+
+</html>
+
+<body>
+    <div class="wrap">
+        <div class="nav-bar">
+            <a class="nav-cta" href="/landing/landing.html">Landing</a>
+            <a class="nav-cta" href="/store/store.html">Store</a>
+            <a class="nav-cta" href="/extractor/extractor.html">Extraction</a>
+            <a class="nav-cta" href="/login/login.html">Unit Login</a>
+        </div>
+        <div class="card">
+    
+            <div class="card-body">
+                <div class="card-body-top">
+                    <h3>Access Restricted</h3>
+                </div>
+                <div class="card-top-letters">
+                    <h1>Identify Yourself<br>or be scraped.</h1>
+                    <p>Present your credentials to receive your extraction tasks.
+                    </p>
+                </div>
+    
+                <div class="card-field">
+                    <label for="unit_id">Unit ID</label>
+                    <input id="unit_id" type="text" autocomplete="off" spellcheck="false" placeholder="********">
+                </div>
+                <div class="card-field">
+                    <label for="access_key">Access Key</label>
+                    <input id="access_key" type="password" placeholder="********">
+                </div>
+                <button class="btn" id="go">Get Your Task</button>
+                <div class="msg" id="msg" role="status" aria-live="polite"></div>
+            </div>
+    
+        </div>
+    </div>
+    <script src="login.js" defer></script>
+</body>

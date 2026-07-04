@@ -1,0 +1,25 @@
+-- GrandMaster Analysis Portal - database export
+-- Generated during the 2024 migration to chessmaster.local
+-- DO NOT leave this in the webroot (TODO: move to off-host storage)
+
+CREATE TABLE members (
+  id       INT PRIMARY KEY,
+  username VARCHAR(32) NOT NULL,
+  password VARCHAR(64) NOT NULL,   -- md5crypt
+  role     VARCHAR(16) DEFAULT 'member',
+  title    VARCHAR(8),
+  joined   DATE
+);
+
+INSERT INTO members (id, username, password, role, title, joined) VALUES
+  (1,  'admin',      '$1$grandmst$cg6Occ8dI24JR1.qq.V07/', 'admin',  'GM', '2024-01-04'),
+  (2,  'capablanca', '$1$capablan$nn8AwYrrX4v.bH3N05sKJ0', 'member', 'GM', '2024-01-09'),
+  (3,  'alekhine',   '$1$alekhine$qNZ0Y2GBPSFLoxbU.n2Wl1', 'member', 'GM', '2024-01-11'),
+  (4,  'tal',        '$1$tal$LhpWRqTke1u9gY1CHRuY//',      'member', 'GM', '2024-01-15'),
+  (5,  'fischer',    '$1$fischer$ZstFrQjGJWpgRa6hNoZdD/',  'member', 'GM', '2024-01-18'),
+  (6,  'karpov',     '$1$karpov$Vrf7vusRu.ws/E1hy3Dk/0',   'member', 'GM', '2024-01-22'),
+  (7,  'kasparov',   '$1$kasparov$F.S9X7./H9FzI1av6vB/g1', 'member', 'GM', '2024-01-26'),
+  (8,  'kramnik',    '$1$kramnik$4HNdMu0ks2a/PiOcVy3Cn1',  'member', 'GM', '2024-02-02'),
+  (9,  'anand',      '$1$anand$95PpKoNCUQ7UAT55Ir6ZG1',    'member', 'GM', '2024-02-07');
+
+-- engine administrator account is managed at the OS level (see morphy)

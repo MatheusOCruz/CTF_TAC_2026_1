@@ -1,0 +1,6 @@
+CEAD/TI - DesAprender3
+Backup automatico da tabela de usuarios (NAO REMOVER).
+Ultima exportacao: 2026-04-24
+
+OBS interna: migrar urgente as senhas de MD5 para bcrypt.
+O Robert vive esquecendo a senha, entao deixei a dele facil de lembrar.

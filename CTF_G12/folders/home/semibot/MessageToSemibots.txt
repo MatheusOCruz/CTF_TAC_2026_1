@@ -1,0 +1,11 @@
+-----------------------------------------------------------------------------
+Hello semibots. It's nice to see you've made it here.
+If you have trouble starting the truck, you might need to talk to Taxman.
+I've been trying to get a hold of him, but he doesn't seem to be answering.
+Meanwhile, I've managed to filter some words but still can't figure out
+what is the correct one to successuflly call him.
+
+Good luck escaping!
+
+A fellow Semibot
+-----------------------------------------------------------------------------

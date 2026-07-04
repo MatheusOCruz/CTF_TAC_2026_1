@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widthdevice-width,initial-scale=1.0">
+    <title>LOOT FOUND</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="loot.css">
+
+</head>
+
+<body>
+    <div class="stage">
+        <div class="hero">
+            <h1><span class="y">LOOT FOUND</span></h1>
+        </div>
+        <img src="loot_nobg.png" alt="repo-loot-box">
+        <div class="loot-field">
+            <!--<input type="text">-->
+            <button class="btn" id="get">GET</button>
+        </div>
+    </div>
+    <dialog class="modal" id="loot-modal">
+        <div class="modal-head">
+            <span class="modal-title">SECRET FLAG GET!</span>
+            <button class="modal-x" id="modal-x" aria-label="Fechar">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p class="modal-msg" id="modal-msg">Now, extract your loot using this passphrase:  peculiarloot</p>
+            <button class="modal-ok" id="modal-ok">Close</button>
+        </div>
+    <script>
+        const modal = document.getElementById('loot-modal');
+        const getBtn = document.getElementById('get');
+        const input = document.querySelector('.loot-field input');
+        const msgEl = document.getElementById('modal-msg');
+        getBtn.addEventListener('click', () => {
+            modal.showModal();
+        });
+
+        document.getElementById('modal-x').addEventListener('click', () => modal.close());
+        document.getElementById('modal-ok').addEventListener('click', () => modal.close());
+
+        modal.addEventListener('click', (e) => {
+            const r = modal.getBoundingClientRect();
+            const dentro = e.clientX >= r.left && e.clientX <= r.right &&
+                e.clientY >= r.top && e.clientY <= r.bottom;
+            if (!dentro) modal.close();
+        });
+    </script>
+    </dialog>
+
+</body>

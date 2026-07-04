@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widthdevice-width,initial-scale=1.0">
+    <title>STORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="store.scss">
+
+</head>
+
+<body>
+    <div class="stage">
+        <div class="wrap">
+            <section class="section">
+                <div class="nav-bar">
+                    <a class="nav-cta" href="/landing/landing.html">Landing</a>
+                    <a class="nav-cta" href="/store/store.html">Store</a>
+                    <a class="nav-cta" href="/extractor/extractor.html">Extraction</a>
+                    <a class="nav-cta" href="/login/login.html">Unit Login</a>
+               </div>
+        
+                <div class="content">
+                    <img class="photo" src="store.png" alt="store image">
+        
+                    <aside class="mission-panel" aria-label="Registro de flags">
+                        <div class="mission-head">
+                            <h2>Walkthrough Questions and Extra Flags</h2>
+                            <span class="mission-count" id="mission-count">0/13</span>
+                        </div>
+        
+                        <div class="mission-list" id="mission-list">
+                            <!--USER FLAG-->
+                            <div class="flag-row" data-id="0.1">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">0.1 User Flag</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+                            <!--ROOT FLAG-->
+                            <div class="flag-row" data-id="0.2">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">0.2 Root Flag</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+                            <!--r.e.p.o login-->
+                            <div class="flag-row" data-id="1">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">1. What is the Content-Type of the login api POST request?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input" autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Use burpsuite to identify the api request. The answer is everything in the Content-Type section">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+
+                            <div class="flag-row" data-id="2">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">2. What is the user for the R.E.P.O. login?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input" autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Check ftp, there might be something you can use for brute forcing the api requests there. The flag -mc all might be useful">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+                            <!-- Password for said user-->
+                            <div class="flag-row" data-id="3">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">3. What is the password for said user?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Have you tried using ffuf?">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="4">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">4. What is the hidden flag from the repo website?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Have you enumerated the pages from repo? What hidden directories are there?">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="5">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">5. After finding the correct potions, what is the ssh username did you find?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Have you tried using burpsuite to check the requests? Have you tried every request from each potion? The username is in one of the directories you find. Remember to CLICK on the correct potions, so inspecting the page might be a good start.">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="6">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">6. What is this user's password?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="It's all about love.">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="7">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">7. What is the hidden flag from the academy?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Have you explored all the directories at the academy?">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="8">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">8. What other ssh user is there?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="9">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">9. What is that user's password?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Try finding it by accessing ftp as that user">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="10">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">10. What suspicious file can you use to access as that user?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Check the sudo permissions. If you know the name, just type the name + extension, not the directory">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="11">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">11. What other suspicious file is there?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Check files with SUID">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row" data-id="12">
+                                <div class="flag-row-top">
+                                    <span class="flag-row-label">12. What the name of taxman's friend?</span>
+                                </div>
+                                <div class="flag-row-bar">
+                                    <input type="text" class="flag-input"
+                                        autocomplete="off" spellcheck="false">
+                                    <button class="submit-btn" type="button" aria-label="Submit answer">
+                                        <svg class="icon-send" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2.01 21 23 12 2.01 3v7l15 2-15 2z" />
+                                        </svg>
+                                        <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59z" />
+                                        </svg>
+                                    </button>
+                                    <button class="hint-btn" type="button" aria-label="See hint"
+                                        data-hint="Have you accessed taxman's ftp yet?">
+                                        <svg class="flag-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M6 21V3h1v6h11l-3 4 3 4H7v4H6z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="hint-box" hidden></div>
+                            </div>
+        
+                            <div class="flag-row flag-row-more" aria-hidden="true">&bull;&bull;&bull;</div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    <script src="store.js" defer></script>
+
+</body></html>

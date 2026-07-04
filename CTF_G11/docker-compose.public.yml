@@ -1,0 +1,38 @@
+# docker-compose para DISTRIBUIÇÃO (players).
+#
+# Usa a imagem publicada no registry em vez de buildar localmente. Os players só
+# precisam deste arquivo: `docker compose -f docker-compose.public.yml up -d` puxa
+# a imagem do Docker Hub automaticamente.
+#
+# >>> Antes de publicar, ajuste a linha `image:` para o seu repositório/tag <<<
+#     (ex.: gmtonnera/hack-em-all:1.0). Faça o push com:
+#       docker tag hack-em-all:latest gmtonnera/hack-em-all:1.0
+#       docker push gmtonnera/hack-em-all:1.0
+services:
+  target:
+    image: gmtonnera/hack-em-all:1.0
+    container_name: hack-em-all
+    hostname: rocket-hideout
+    # SUID e PwnKit dependem de NÃO usar no-new-privileges (padrão do Docker já permite).
+    security_opt:
+      - no-new-privileges:false
+    ports:
+      - "80:80"      # nginx isca
+      - "21:21"      # vsftpd anônimo (isca)
+      - "21100-21110:21100-21110"  # vsftpd modo passivo
+      - "22:22"      # sshd
+      - "50080:50080"  # site oficial Team Rocket (alvo) — porta alta: força nmap -p-
+    restart: unless-stopped
+    networks:
+      ctf:
+        # IP estável: escaneie este endereço (e não localhost) para ver o alvo
+        # como um player o veria. Ex.: nmap -sS -sV -Pn --open -p- 172.30.0.10
+        ipv4_address: 172.30.0.10
+
+networks:
+  ctf:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+          gateway: 172.30.0.1

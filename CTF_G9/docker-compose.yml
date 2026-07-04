@@ -1,0 +1,55 @@
+services:
+  detonator:
+    build: .
+    command: php /var/www/app/Jobs/detonator.php
+    user: root
+    environment:
+      BOMB_DB_PATH: /var/lib/bomb-data/bomb.sqlite
+    volumes:
+      - ./src:/var/www/app
+      - ./secret:/root/secret_seed:ro
+      - secret_data:/root/secret
+      - bomb_data:/var/lib/bomb-data
+    networks:
+      - ctf_net
+
+  bomb_panel:
+    build: .
+    depends_on:
+      - detonator
+    ports:
+      - "8000:80"
+      - "2222:22"
+    environment:
+      BOMB_DB_PATH: /var/lib/bomb-data/bomb.sqlite
+    volumes:
+      - ./src:/var/www/app
+      - secret_data:/root/secret
+      - bomb_data:/var/lib/bomb-data
+    networks:
+      - ctf_net
+  
+  ftp_server:
+    image: fauria/vsftpd
+    ports:
+      - "21:21"
+      - "20:20"
+      - "21100-21110:21100-21110"
+    environment:
+      - FTP_USER=Junior
+      - FTP_PASS=ronaldinho
+      - PASV_MIN_PORT=21100
+      - PASV_MAX_PORT=21110
+      - PASV_ADDRESS=127.0.0.1
+    volumes:
+      - ./ftp_data:/home/vsftpd/Junior
+    networks:
+      - ctf_net
+
+networks:
+  ctf_net:
+    driver: bridge
+
+volumes:
+  bomb_data:
+  secret_data:

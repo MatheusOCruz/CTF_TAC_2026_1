@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /backup/
+Disallow: /dashboard.php
+Disallow: /login.php
+
+# Internal note: the production portal now lives on the chessmaster.local vhost.
+# Crawlers kept indexing the old DB export under /backup/ - please exclude it.

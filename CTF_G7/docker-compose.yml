@@ -1,0 +1,11 @@
+name: nexabyte_ctf
+
+services:
+  nexabyte-intranet:
+    build: .
+    container_name: nexabyte-intranet-ctf
+    ports:
+      - "8080:80"
+      - "2222:22"
+    restart: unless-stopped
+    hostname: nexabyte-intranet

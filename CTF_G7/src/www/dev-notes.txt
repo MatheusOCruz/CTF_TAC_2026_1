@@ -1,0 +1,6 @@
+NexaByte intranet staging notes
+
+- Remover diag.php antes de publicar fora da rede interna.
+- Revisar assets/old_config.bak antes de publicar a imagem final.
+- O supervisor legado usado pelo dev junior so deve escutar localmente.
+- A rotina /usr/local/bin/junior-report ainda roda como root no ambiente de homologacao.

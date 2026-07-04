@@ -1,0 +1,111 @@
+:root {
+    --void: #0a0806;
+    --panel: #14100b;
+    --panel-2: #0d0a07;
+    --line: #3a2a18;
+    --scan: #ff9d2e;
+    --scan-dim: #b35a12;
+    --surplus: #ffd23f;
+    --active: #2fe3e3;
+    --scrap: #ff3b3b;
+    --ash: #9a8676;
+    --bone: #f0e3d4;
+
+    --scan-green: #4dff7c;
+    --scan-dim-green: #2a7a45;
+    --panel-green: #0d120e;
+    --line-green: #1d2a20;
+    --alternative-green: rgba(77, 255, 124);
+    --alternative-green-transition: rgba(255, 59, 59);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    background-color: color-mix(in srgb, var(--void) 30%, transparent);
+    background-image: url("academy.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-blend-mode: multiply;
+    z-index: -99;
+}
+
+.vignette {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 30vh 5vh var(--void) inset;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.filler {
+    margin: 25vh;
+}
+
+.academy-text {
+    padding: 5px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    z-index: 0;
+    font-family: 'Space Mono', monospace;
+}
+
+.potion-container {
+    background-color: color-mix(in srgb, var(--scan-dim) 20%, transparent);
+    width: 55vw;
+    z-index: -1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--scan);
+
+    .potion-row {
+        display: flex; 
+        justify-content: space-between;
+    
+        .potion-item {
+            height: 15vh;
+            width: 15vh;
+            margin: 1vh;
+            padding: 5px;
+            float: none;
+
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                height: 15vh;
+                transform: scale(1);
+                z-index: -1;
+                -webkit-filter: drop-shadow(2px 2px 0 color-mix(in srgb, var(--scan) 70%, transparent))
+                                drop-shadow(-2px 2px 0 color-mix(in srgb, var(--scan) 70%, transparent))
+                                drop-shadow(2px -2px 0 color-mix(in srgb, var(--scan) 70%, transparent))
+                                drop-shadow(-2px -2px 0 color-mix(in srgb, var(--scan) 70%, transparent));
+                filter: drop-shadow(2px 2px 0 color-mix(in srgb, var(--scan) 70%, transparent))
+                        drop-shadow(-2px 2px 0 color-mix(in srgb, var(--scan) 70%, transparent))
+                        drop-shadow(2px -2px 0 color-mix(in srgb, var(--scan) 70%, transparent))
+                        drop-shadow(-2px -2px 0 color-mix(in srgb, var(--scan) 70%, transparent));
+                transition: transform 0.1s ease-in-out;
+            }
+
+            img:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

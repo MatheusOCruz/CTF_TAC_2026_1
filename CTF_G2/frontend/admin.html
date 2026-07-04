@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Aprender 4</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="/dashboard.html" class="navbar-brand">
+            <img src="/img/logo.svg" alt="Aprender 4">
+            <span>Aprender 4</span>
+        </a>
+        <nav class="navbar-links">
+            <a href="/dashboard.html">Inicio</a>
+            <a href="/submissoes.html">Submissoes</a>
+            <a href="/admin.html" class="active">Admin</a>
+            <span id="user-greeting"></span>
+            <button onclick="Auth.logout()" class="btn btn-outline btn-sm">Sair</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="admin-layout">
+            <h1>Painel de Administracao</h1>
+
+            <div id="users-table-container">
+                <p style="color:var(--gray-text)">Carregando usuarios...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/auth.js?v=2"></script>
+    <script src="/js/api.js?v=2"></script>
+    <script src="/js/admin.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+=====================================================================
+  DETIC/UnB — Diretoria de Tecnologia da Informação e Comunicação
+  Ticket #UnB-4821 | Migração de Dados — Ambiente de Homologação
+=====================================================================
+
+Data de abertura:   04/03/2024
+Responsável:        Carlos Mendes (Analista de Infraestrutura — DETIC)
+Status:             EM ANDAMENTO
+Prioridade:         ALTA
+
+---------------------------------------------------------------------
+DESCRIÇÃO
+---------------------------------------------------------------------
+
+Conforme solicitação da coordenação de TI, foi configurado um servidor de 
+homologação com FTP ativo temporariamente para facilitar a transferência 
+de arquivos de manutenção.
+
+Lembrete para a equipe: O servidor FTP está aberto provisoriamente 
+para receber as wordlists e backups exportados. Não esqueçam de fechar 
+a porta 21 assim que a rotina for concluída.
+
+---------------------------------------------------------------------
+PENDÊNCIAS
+---------------------------------------------------------------------
+
+  [ ] Transferir export de usuários para homologação
+  [ ] Remover LEIA-ME-DETIC.txt e credenciais temporárias do FTP
+  [ ] Desabilitar o serviço FTP (urgente!)
+  [ ] Desabilitar listagem de diretório no Apache (Directory Listing)
+  [ ] Atualizar registro no GLPI (chamado #2024-0312)
+
+---------------------------------------------------------------------
+  Assinatura: Carlos Mendes — Analista de Infraestrutura
+  DETIC/UnB — Ticket #UnB-4821
+=====================================================================

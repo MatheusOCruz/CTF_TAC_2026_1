@@ -1,0 +1,5 @@
+id,nome,cpf,papel,senha_md5
+1,Administrador AVA,00011122233,admin,7e31f0d7d7a866f48a4f286e50e10aff
+1001,Maria Fernanda Souza,99988877766,aluno,c323d55e3042ae39303b2f106ca10b11
+1337,Joao Vitor Almeida,05544433322,aluno,3dfcab79ed21fd89c9eb25e9864a6155
+2042,Robert Son,11122233344,professor,84d961568a65073a3bcf0eb216b2a576
