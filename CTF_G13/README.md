@@ -17,5 +17,5 @@ A sua missão é explorar as falhas da infraestrutura  do Grupo 935, invadir os 
 # Como Rodar o Projeto
 
 ``` bash
- docker-compose up --build
+ docker-compose up -d --build
 ```
