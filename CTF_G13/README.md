@@ -1,6 +1,7 @@
 
-Autor: Matheus Cruz - 211055343
+# Autor: 
 
+Matheus Cruz - 211055343
 
 # Zombies CTF
 
@@ -13,7 +14,7 @@ Para alcançar esse objetivo, você precisa se infiltrar na rede da Estação Gr
 A sua missão é explorar as falhas da infraestrutura  do Grupo 935, invadir os servidores restritos e roubar esses artefatos.
 
 
-Como Rodar o Projeto
+# Como Rodar o Projeto
 
 ``` bash
  docker-compose up --build
